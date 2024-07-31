@@ -1,0 +1,1291 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="TBLWareHouseSystemModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="UserPassword" Type="nvarchar" MaxLength="50" />
+          <Property Name="Fullname" Type="nvarchar" MaxLength="50" />
+          <Property Name="GroupID" Type="nvarchar" MaxLength="50" />
+          <Property Name="UpdateTime" Type="datetime" />
+          <Property Name="UpdateBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="Resign" Type="bit" />
+        </EntityType>
+        <EntityType Name="Customers">
+          <Key>
+            <PropertyRef Name="CustomerID" />
+          </Key>
+          <Property Name="CustomerID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CustomerName" Type="nvarchar(max)" />
+          <Property Name="CustomerAddress" Type="nvarchar" MaxLength="50" />
+          <Property Name="UpdateTime" Type="datetime" />
+          <Property Name="UpdateBy" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Functions">
+          <Key>
+            <PropertyRef Name="FunctionID" />
+          </Key>
+          <Property Name="FunctionID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="FunctionName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Device" Type="nvarchar" MaxLength="3" />
+        </EntityType>
+        <EntityType Name="GroupFunctions">
+          <Key>
+            <PropertyRef Name="GroupID" />
+            <PropertyRef Name="FunctionID" />
+          </Key>
+          <Property Name="GroupID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="FunctionID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="isEnable" Type="bit" />
+          <Property Name="UpdateTime" Type="datetime" />
+          <Property Name="UpdateBy" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="GroupManagement">
+          <Key>
+            <PropertyRef Name="GroupID" />
+          </Key>
+          <Property Name="GroupID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="GroupName" Type="nvarchar" MaxLength="50" />
+          <Property Name="GroupDescription" Type="nvarchar(max)" />
+          <Property Name="UpdateTime" Type="datetime" />
+          <Property Name="UpdateBy" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'TBLWareHouseSystem.dbo.Inventory' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="Inventory">
+          <Property Name="ProductID" Type="nvarchar" MaxLength="50" />
+          <Property Name="ProductNo" Type="nvarchar" MaxLength="1" />
+          <Property Name="Quantity" Type="float" />
+          <Property Name="LocationID" Type="nvarchar" MaxLength="50" />
+        </EntityType>-->
+        <EntityType Name="LocationMaster">
+          <Key>
+            <PropertyRef Name="LocationID" />
+          </Key>
+          <Property Name="LocationID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="LocationName" Type="nvarchar" MaxLength="50" />
+          <Property Name="UpdateTime" Type="datetime" />
+          <Property Name="UpdateBy" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="MovementHistory">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ProductID" Type="nvarchar" MaxLength="50" />
+          <Property Name="ProductNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="FromLocationID" Type="nvarchar" MaxLength="50" />
+          <Property Name="ToLocationID" Type="nvarchar" MaxLength="50" />
+          <Property Name="QuantityToMove" Type="float" />
+          <Property Name="UpdateTime" Type="datetime" />
+          <Property Name="UpdateBy" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="ProductMaster">
+          <Key>
+            <PropertyRef Name="ProductID" />
+          </Key>
+          <Property Name="ProductID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ProductName" Type="nvarchar" MaxLength="200" />
+          <Property Name="ProductCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="ProductQuantity" Type="float" />
+          <Property Name="SupplierID" Type="nvarchar" MaxLength="50" />
+          <Property Name="UOM" Type="nvarchar" MaxLength="50" />
+          <Property Name="UpdateTime" Type="datetime" />
+          <Property Name="UpdateBy" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="StockIn">
+          <Key>
+            <PropertyRef Name="StockInID" />
+          </Key>
+          <Property Name="StockInID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="SupplierID" Type="nvarchar" MaxLength="50" />
+          <Property Name="StockInDate" Type="datetime" />
+          <Property Name="StockInQuantityTotal" Type="float" />
+          <Property Name="UpdateTime" Type="datetime" />
+          <Property Name="UpdateBy" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="StockInDetail">
+          <Key>
+            <PropertyRef Name="StockInID" />
+            <PropertyRef Name="ProductID" />
+          </Key>
+          <Property Name="StockInID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ProductID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Quantity" Type="float" />
+          <Property Name="UnitPrice" Type="float" />
+          <Property Name="UnitSum" Type="float" />
+          <Property Name="UpdateTime" Type="datetime" />
+          <Property Name="UpdateBy" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="StockOut">
+          <Key>
+            <PropertyRef Name="StockOutID" />
+          </Key>
+          <Property Name="StockOutID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CustomerID" Type="nvarchar" MaxLength="50" />
+          <Property Name="StockOutDate" Type="datetime" />
+          <Property Name="StockOutQuantityTotal" Type="float" />
+          <Property Name="UpdateTime" Type="datetime" />
+          <Property Name="UpdateBy" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="StockOutDetail">
+          <Key>
+            <PropertyRef Name="StockOutID" />
+            <PropertyRef Name="ProductID" />
+          </Key>
+          <Property Name="StockOutID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ProductID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Quantity" Type="float" />
+          <Property Name="UnitPrice" Type="float" />
+          <Property Name="UnitSum" Type="float" />
+          <Property Name="UpdateTime" Type="datetime" />
+          <Property Name="UpdateBy" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="StockTake">
+          <Key>
+            <PropertyRef Name="StockTakeID" />
+          </Key>
+          <Property Name="StockTakeID" Type="int" Nullable="false" />
+          <Property Name="StockTakeDate" Type="datetime" />
+          <Property Name="StatusID" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'TBLWareHouseSystem.dbo.StockTakeDetail' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="StockTakeDetail">
+          <Property Name="StockTakeID" Type="int" />
+          <Property Name="ProductID" Type="nvarchar" MaxLength="50" />
+          <Property Name="ProductNo" Type="int" />
+          <Property Name="LocationID" Type="nvarchar" MaxLength="50" />
+          <Property Name="Quantity" Type="float" />
+        </EntityType>-->
+        <EntityType Name="Suppliers">
+          <Key>
+            <PropertyRef Name="SupplierID" />
+          </Key>
+          <Property Name="SupplierID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="SupplierName" Type="nvarchar(max)" />
+          <Property Name="SupplierAddress" Type="nvarchar" MaxLength="50" />
+          <Property Name="UpdateTime" Type="datetime" />
+          <Property Name="UpdateBy" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="TransactionHistory">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="SourceNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="ProductID" Type="nvarchar" MaxLength="50" />
+          <Property Name="Quantity" Type="float" />
+          <Property Name="Action" Type="nvarchar" MaxLength="50" />
+          <Property Name="UpdateTime" Type="datetime" />
+          <Property Name="UpdateBy" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK__Account__GroupID__5BE2A6F2">
+          <End Role="GroupManagement" Type="Self.GroupManagement" Multiplicity="0..1" />
+          <End Role="Account" Type="Self.Account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GroupManagement">
+              <PropertyRef Name="GroupID" />
+            </Principal>
+            <Dependent Role="Account">
+              <PropertyRef Name="GroupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__GroupFunc__Funct__6383C8BA">
+          <End Role="Functions" Type="Self.Functions" Multiplicity="1" />
+          <End Role="GroupFunctions" Type="Self.GroupFunctions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Functions">
+              <PropertyRef Name="FunctionID" />
+            </Principal>
+            <Dependent Role="GroupFunctions">
+              <PropertyRef Name="FunctionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__GroupFunc__Group__5CD6CB2B">
+          <End Role="GroupManagement" Type="Self.GroupManagement" Multiplicity="1" />
+          <End Role="GroupFunctions" Type="Self.GroupFunctions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GroupManagement">
+              <PropertyRef Name="GroupID" />
+            </Principal>
+            <Dependent Role="GroupFunctions">
+              <PropertyRef Name="GroupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <!--Errors Found During Generation:
+error 6004: The table 'TBLWareHouseSystem.dbo.Inventory' is referenced by a relationship, but cannot be found.
+        <Association Name="FK__Inventory__Locat__07C12930" />-->
+        <!--Errors Found During Generation:
+error 6004: The table 'TBLWareHouseSystem.dbo.Inventory' is referenced by a relationship, but cannot be found.
+        <Association Name="FK__Inventory__Produ__08B54D69" />-->
+        <Association Name="FK__MovementH__Updat__1DB06A4F">
+          <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
+          <End Role="MovementHistory" Type="Self.MovementHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="MovementHistory">
+              <PropertyRef Name="UpdateBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__MovementH__Updat__1EA48E88">
+          <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
+          <End Role="MovementHistory" Type="Self.MovementHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="MovementHistory">
+              <PropertyRef Name="UpdateBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ProductMa__Suppl__71D1E811">
+          <End Role="Suppliers" Type="Self.Suppliers" Multiplicity="0..1" />
+          <End Role="ProductMaster" Type="Self.ProductMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Suppliers">
+              <PropertyRef Name="SupplierID" />
+            </Principal>
+            <Dependent Role="ProductMaster">
+              <PropertyRef Name="SupplierID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ProductMa__Updat__19DFD96B">
+          <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
+          <End Role="ProductMaster" Type="Self.ProductMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="ProductMaster">
+              <PropertyRef Name="UpdateBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__StockIn__UpdateB__17F790F9">
+          <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
+          <End Role="StockIn" Type="Self.StockIn" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="StockIn">
+              <PropertyRef Name="UpdateBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__StockInDe__Stock__1332DBDC">
+          <End Role="StockIn" Type="Self.StockIn" Multiplicity="1" />
+          <End Role="StockInDetail" Type="Self.StockInDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StockIn">
+              <PropertyRef Name="StockInID" />
+            </Principal>
+            <Dependent Role="StockInDetail">
+              <PropertyRef Name="StockInID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__StockInDe__Stock__14270015">
+          <End Role="StockIn" Type="Self.StockIn" Multiplicity="1" />
+          <End Role="StockInDetail" Type="Self.StockInDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StockIn">
+              <PropertyRef Name="StockInID" />
+            </Principal>
+            <Dependent Role="StockInDetail">
+              <PropertyRef Name="StockInID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__StockInDe__Stock__160F4887">
+          <End Role="StockIn" Type="Self.StockIn" Multiplicity="1" />
+          <End Role="StockInDetail" Type="Self.StockInDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StockIn">
+              <PropertyRef Name="StockInID" />
+            </Principal>
+            <Dependent Role="StockInDetail">
+              <PropertyRef Name="StockInID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__StockInDe__Updat__123EB7A3">
+          <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
+          <End Role="StockInDetail" Type="Self.StockInDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="StockInDetail">
+              <PropertyRef Name="UpdateBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__StockInDe__Updat__151B244E">
+          <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
+          <End Role="StockInDetail" Type="Self.StockInDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="StockInDetail">
+              <PropertyRef Name="UpdateBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__StockOut__Custom__02FC7413">
+          <End Role="Customers" Type="Self.Customers" Multiplicity="0..1" />
+          <End Role="StockOut" Type="Self.StockOut" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customers">
+              <PropertyRef Name="CustomerID" />
+            </Principal>
+            <Dependent Role="StockOut">
+              <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__StockOut__Update__18EBB532">
+          <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
+          <End Role="StockOut" Type="Self.StockOut" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="StockOut">
+              <PropertyRef Name="UpdateBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__StockOutD__Produ__00200768">
+          <End Role="ProductMaster" Type="Self.ProductMaster" Multiplicity="1" />
+          <End Role="StockOutDetail" Type="Self.StockOutDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductMaster">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="StockOutDetail">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__StockOutD__Stock__01142BA1">
+          <End Role="StockOut" Type="Self.StockOut" Multiplicity="1" />
+          <End Role="StockOutDetail" Type="Self.StockOutDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StockOut">
+              <PropertyRef Name="StockOutID" />
+            </Principal>
+            <Dependent Role="StockOutDetail">
+              <PropertyRef Name="StockOutID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__StockOutD__Updat__17036CC0">
+          <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
+          <End Role="StockOutDetail" Type="Self.StockOutDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="StockOutDetail">
+              <PropertyRef Name="UpdateBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <!--Errors Found During Generation:
+error 6004: The table 'TBLWareHouseSystem.dbo.StockTakeDetail' is referenced by a relationship, but cannot be found.
+        <Association Name="FK__StockTake__Stock__0F624AF8" />-->
+        <!--Errors Found During Generation:
+error 6004: The table 'TBLWareHouseSystem.dbo.StockTakeDetail' is referenced by a relationship, but cannot be found.
+        <Association Name="FK__StockTake__Stock__10566F31" />-->
+        <!--Errors Found During Generation:
+error 6004: The table 'TBLWareHouseSystem.dbo.StockTakeDetail' is referenced by a relationship, but cannot be found.
+        <Association Name="FK__StockTake__Stock__114A936A" />-->
+        <Association Name="FK__Transacti__Updat__245D67DE">
+          <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
+          <End Role="TransactionHistory" Type="Self.TransactionHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="TransactionHistory">
+              <PropertyRef Name="UpdateBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TBLWareHouseSystemModelStoreContainer">
+          <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Customers" EntityType="Self.Customers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Functions" EntityType="Self.Functions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GroupFunctions" EntityType="Self.GroupFunctions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GroupManagement" EntityType="Self.GroupManagement" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LocationMaster" EntityType="Self.LocationMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MovementHistory" EntityType="Self.MovementHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductMaster" EntityType="Self.ProductMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StockIn" EntityType="Self.StockIn" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StockInDetail" EntityType="Self.StockInDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StockOut" EntityType="Self.StockOut" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StockOutDetail" EntityType="Self.StockOutDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StockTake" EntityType="Self.StockTake" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Suppliers" EntityType="Self.Suppliers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TransactionHistory" EntityType="Self.TransactionHistory" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Account__GroupID__5BE2A6F2" Association="Self.FK__Account__GroupID__5BE2A6F2">
+            <End Role="GroupManagement" EntitySet="GroupManagement" />
+            <End Role="Account" EntitySet="Account" />
+          </AssociationSet>
+          <AssociationSet Name="FK__GroupFunc__Funct__6383C8BA" Association="Self.FK__GroupFunc__Funct__6383C8BA">
+            <End Role="Functions" EntitySet="Functions" />
+            <End Role="GroupFunctions" EntitySet="GroupFunctions" />
+          </AssociationSet>
+          <AssociationSet Name="FK__GroupFunc__Group__5CD6CB2B" Association="Self.FK__GroupFunc__Group__5CD6CB2B">
+            <End Role="GroupManagement" EntitySet="GroupManagement" />
+            <End Role="GroupFunctions" EntitySet="GroupFunctions" />
+          </AssociationSet>
+          <AssociationSet Name="FK__MovementH__Updat__1DB06A4F" Association="Self.FK__MovementH__Updat__1DB06A4F">
+            <End Role="Account" EntitySet="Account" />
+            <End Role="MovementHistory" EntitySet="MovementHistory" />
+          </AssociationSet>
+          <AssociationSet Name="FK__MovementH__Updat__1EA48E88" Association="Self.FK__MovementH__Updat__1EA48E88">
+            <End Role="Account" EntitySet="Account" />
+            <End Role="MovementHistory" EntitySet="MovementHistory" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ProductMa__Suppl__71D1E811" Association="Self.FK__ProductMa__Suppl__71D1E811">
+            <End Role="Suppliers" EntitySet="Suppliers" />
+            <End Role="ProductMaster" EntitySet="ProductMaster" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ProductMa__Updat__19DFD96B" Association="Self.FK__ProductMa__Updat__19DFD96B">
+            <End Role="Account" EntitySet="Account" />
+            <End Role="ProductMaster" EntitySet="ProductMaster" />
+          </AssociationSet>
+          <AssociationSet Name="FK__StockIn__UpdateB__17F790F9" Association="Self.FK__StockIn__UpdateB__17F790F9">
+            <End Role="Account" EntitySet="Account" />
+            <End Role="StockIn" EntitySet="StockIn" />
+          </AssociationSet>
+          <AssociationSet Name="FK__StockInDe__Stock__1332DBDC" Association="Self.FK__StockInDe__Stock__1332DBDC">
+            <End Role="StockIn" EntitySet="StockIn" />
+            <End Role="StockInDetail" EntitySet="StockInDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK__StockInDe__Stock__14270015" Association="Self.FK__StockInDe__Stock__14270015">
+            <End Role="StockIn" EntitySet="StockIn" />
+            <End Role="StockInDetail" EntitySet="StockInDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK__StockInDe__Stock__160F4887" Association="Self.FK__StockInDe__Stock__160F4887">
+            <End Role="StockIn" EntitySet="StockIn" />
+            <End Role="StockInDetail" EntitySet="StockInDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK__StockInDe__Updat__123EB7A3" Association="Self.FK__StockInDe__Updat__123EB7A3">
+            <End Role="Account" EntitySet="Account" />
+            <End Role="StockInDetail" EntitySet="StockInDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK__StockInDe__Updat__151B244E" Association="Self.FK__StockInDe__Updat__151B244E">
+            <End Role="Account" EntitySet="Account" />
+            <End Role="StockInDetail" EntitySet="StockInDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK__StockOut__Custom__02FC7413" Association="Self.FK__StockOut__Custom__02FC7413">
+            <End Role="Customers" EntitySet="Customers" />
+            <End Role="StockOut" EntitySet="StockOut" />
+          </AssociationSet>
+          <AssociationSet Name="FK__StockOut__Update__18EBB532" Association="Self.FK__StockOut__Update__18EBB532">
+            <End Role="Account" EntitySet="Account" />
+            <End Role="StockOut" EntitySet="StockOut" />
+          </AssociationSet>
+          <AssociationSet Name="FK__StockOutD__Produ__00200768" Association="Self.FK__StockOutD__Produ__00200768">
+            <End Role="ProductMaster" EntitySet="ProductMaster" />
+            <End Role="StockOutDetail" EntitySet="StockOutDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK__StockOutD__Stock__01142BA1" Association="Self.FK__StockOutD__Stock__01142BA1">
+            <End Role="StockOut" EntitySet="StockOut" />
+            <End Role="StockOutDetail" EntitySet="StockOutDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK__StockOutD__Updat__17036CC0" Association="Self.FK__StockOutD__Updat__17036CC0">
+            <End Role="Account" EntitySet="Account" />
+            <End Role="StockOutDetail" EntitySet="StockOutDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Transacti__Updat__245D67DE" Association="Self.FK__Transacti__Updat__245D67DE">
+            <End Role="Account" EntitySet="Account" />
+            <End Role="TransactionHistory" EntitySet="TransactionHistory" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TBLWareHouseSystemModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserPassword" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Fullname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="GroupID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UpdateTime" Type="DateTime" Precision="3" />
+          <Property Name="UpdateBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Resign" Type="Boolean" />
+          <NavigationProperty Name="GroupManagement" Relationship="Self.FK__Account__GroupID__5BE2A6F2" FromRole="Account" ToRole="GroupManagement" />
+          <NavigationProperty Name="MovementHistories" Relationship="Self.FK__MovementH__Updat__1DB06A4F" FromRole="Account" ToRole="MovementHistory" />
+          <NavigationProperty Name="MovementHistories1" Relationship="Self.FK__MovementH__Updat__1EA48E88" FromRole="Account" ToRole="MovementHistory" />
+          <NavigationProperty Name="ProductMasters" Relationship="Self.FK__ProductMa__Updat__19DFD96B" FromRole="Account" ToRole="ProductMaster" />
+          <NavigationProperty Name="StockIns" Relationship="Self.FK__StockIn__UpdateB__17F790F9" FromRole="Account" ToRole="StockIn" />
+          <NavigationProperty Name="StockInDetails" Relationship="Self.FK__StockInDe__Updat__123EB7A3" FromRole="Account" ToRole="StockInDetail" />
+          <NavigationProperty Name="StockInDetails1" Relationship="Self.FK__StockInDe__Updat__151B244E" FromRole="Account" ToRole="StockInDetail" />
+          <NavigationProperty Name="StockOuts" Relationship="Self.FK__StockOut__Update__18EBB532" FromRole="Account" ToRole="StockOut" />
+          <NavigationProperty Name="StockOutDetails" Relationship="Self.FK__StockOutD__Updat__17036CC0" FromRole="Account" ToRole="StockOutDetail" />
+          <NavigationProperty Name="TransactionHistories" Relationship="Self.FK__Transacti__Updat__245D67DE" FromRole="Account" ToRole="TransactionHistory" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="CustomerID" />
+          </Key>
+          <Property Name="CustomerID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CustomerName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CustomerAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UpdateTime" Type="DateTime" Precision="3" />
+          <Property Name="UpdateBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="StockOuts" Relationship="Self.FK__StockOut__Custom__02FC7413" FromRole="Customers" ToRole="StockOut" />
+        </EntityType>
+        <EntityType Name="Function">
+          <Key>
+            <PropertyRef Name="FunctionID" />
+          </Key>
+          <Property Name="FunctionID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FunctionName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Device" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="GroupFunctions" Relationship="Self.FK__GroupFunc__Funct__6383C8BA" FromRole="Functions" ToRole="GroupFunctions" />
+        </EntityType>
+        <EntityType Name="GroupFunction">
+          <Key>
+            <PropertyRef Name="GroupID" />
+            <PropertyRef Name="FunctionID" />
+          </Key>
+          <Property Name="GroupID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FunctionID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="isEnable" Type="Boolean" />
+          <Property Name="UpdateTime" Type="DateTime" Precision="3" />
+          <Property Name="UpdateBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Function" Relationship="Self.FK__GroupFunc__Funct__6383C8BA" FromRole="GroupFunctions" ToRole="Functions" />
+          <NavigationProperty Name="GroupManagement" Relationship="Self.FK__GroupFunc__Group__5CD6CB2B" FromRole="GroupFunctions" ToRole="GroupManagement" />
+        </EntityType>
+        <EntityType Name="GroupManagement">
+          <Key>
+            <PropertyRef Name="GroupID" />
+          </Key>
+          <Property Name="GroupID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="GroupName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="GroupDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UpdateTime" Type="DateTime" Precision="3" />
+          <Property Name="UpdateBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Accounts" Relationship="Self.FK__Account__GroupID__5BE2A6F2" FromRole="GroupManagement" ToRole="Account" />
+          <NavigationProperty Name="GroupFunctions" Relationship="Self.FK__GroupFunc__Group__5CD6CB2B" FromRole="GroupManagement" ToRole="GroupFunctions" />
+        </EntityType>
+        <EntityType Name="LocationMaster">
+          <Key>
+            <PropertyRef Name="LocationID" />
+          </Key>
+          <Property Name="LocationID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LocationName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UpdateTime" Type="DateTime" Precision="3" />
+          <Property Name="UpdateBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="MovementHistory">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="ProductID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ProductNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FromLocationID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ToLocationID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="QuantityToMove" Type="Double" />
+          <Property Name="UpdateTime" Type="DateTime" Precision="3" />
+          <Property Name="UpdateBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Account" Relationship="Self.FK__MovementH__Updat__1DB06A4F" FromRole="MovementHistory" ToRole="Account" />
+          <NavigationProperty Name="Account1" Relationship="Self.FK__MovementH__Updat__1EA48E88" FromRole="MovementHistory" ToRole="Account" />
+        </EntityType>
+        <EntityType Name="ProductMaster">
+          <Key>
+            <PropertyRef Name="ProductID" />
+          </Key>
+          <Property Name="ProductID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ProductName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="ProductCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ProductQuantity" Type="Double" />
+          <Property Name="SupplierID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UOM" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UpdateTime" Type="DateTime" Precision="3" />
+          <Property Name="UpdateBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Account" Relationship="Self.FK__ProductMa__Updat__19DFD96B" FromRole="ProductMaster" ToRole="Account" />
+          <NavigationProperty Name="Supplier" Relationship="Self.FK__ProductMa__Suppl__71D1E811" FromRole="ProductMaster" ToRole="Suppliers" />
+          <NavigationProperty Name="StockOutDetails" Relationship="Self.FK__StockOutD__Produ__00200768" FromRole="ProductMaster" ToRole="StockOutDetail" />
+        </EntityType>
+        <EntityType Name="StockIn">
+          <Key>
+            <PropertyRef Name="StockInID" />
+          </Key>
+          <Property Name="StockInID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SupplierID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="StockInDate" Type="DateTime" Precision="3" />
+          <Property Name="StockInQuantityTotal" Type="Double" />
+          <Property Name="UpdateTime" Type="DateTime" Precision="3" />
+          <Property Name="UpdateBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Account" Relationship="Self.FK__StockIn__UpdateB__17F790F9" FromRole="StockIn" ToRole="Account" />
+          <NavigationProperty Name="StockInDetails" Relationship="Self.FK__StockInDe__Stock__1332DBDC" FromRole="StockIn" ToRole="StockInDetail" />
+          <NavigationProperty Name="StockInDetails1" Relationship="Self.FK__StockInDe__Stock__14270015" FromRole="StockIn" ToRole="StockInDetail" />
+          <NavigationProperty Name="StockInDetails2" Relationship="Self.FK__StockInDe__Stock__160F4887" FromRole="StockIn" ToRole="StockInDetail" />
+        </EntityType>
+        <EntityType Name="StockInDetail">
+          <Key>
+            <PropertyRef Name="StockInID" />
+            <PropertyRef Name="ProductID" />
+          </Key>
+          <Property Name="StockInID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ProductID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Quantity" Type="Double" />
+          <Property Name="UnitPrice" Type="Double" />
+          <Property Name="UnitSum" Type="Double" />
+          <Property Name="UpdateTime" Type="DateTime" Precision="3" />
+          <Property Name="UpdateBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Account" Relationship="Self.FK__StockInDe__Updat__123EB7A3" FromRole="StockInDetail" ToRole="Account" />
+          <NavigationProperty Name="Account1" Relationship="Self.FK__StockInDe__Updat__151B244E" FromRole="StockInDetail" ToRole="Account" />
+          <NavigationProperty Name="StockIn" Relationship="Self.FK__StockInDe__Stock__1332DBDC" FromRole="StockInDetail" ToRole="StockIn" />
+          <NavigationProperty Name="StockIn1" Relationship="Self.FK__StockInDe__Stock__14270015" FromRole="StockInDetail" ToRole="StockIn" />
+          <NavigationProperty Name="StockIn2" Relationship="Self.FK__StockInDe__Stock__160F4887" FromRole="StockInDetail" ToRole="StockIn" />
+        </EntityType>
+        <EntityType Name="StockOut">
+          <Key>
+            <PropertyRef Name="StockOutID" />
+          </Key>
+          <Property Name="StockOutID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CustomerID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="StockOutDate" Type="DateTime" Precision="3" />
+          <Property Name="StockOutQuantityTotal" Type="Double" />
+          <Property Name="UpdateTime" Type="DateTime" Precision="3" />
+          <Property Name="UpdateBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Account" Relationship="Self.FK__StockOut__Update__18EBB532" FromRole="StockOut" ToRole="Account" />
+          <NavigationProperty Name="Customer" Relationship="Self.FK__StockOut__Custom__02FC7413" FromRole="StockOut" ToRole="Customers" />
+          <NavigationProperty Name="StockOutDetails" Relationship="Self.FK__StockOutD__Stock__01142BA1" FromRole="StockOut" ToRole="StockOutDetail" />
+        </EntityType>
+        <EntityType Name="StockOutDetail">
+          <Key>
+            <PropertyRef Name="StockOutID" />
+            <PropertyRef Name="ProductID" />
+          </Key>
+          <Property Name="StockOutID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ProductID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Quantity" Type="Double" />
+          <Property Name="UnitPrice" Type="Double" />
+          <Property Name="UnitSum" Type="Double" />
+          <Property Name="UpdateTime" Type="DateTime" Precision="3" />
+          <Property Name="UpdateBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Account" Relationship="Self.FK__StockOutD__Updat__17036CC0" FromRole="StockOutDetail" ToRole="Account" />
+          <NavigationProperty Name="ProductMaster" Relationship="Self.FK__StockOutD__Produ__00200768" FromRole="StockOutDetail" ToRole="ProductMaster" />
+          <NavigationProperty Name="StockOut" Relationship="Self.FK__StockOutD__Stock__01142BA1" FromRole="StockOutDetail" ToRole="StockOut" />
+        </EntityType>
+        <EntityType Name="StockTake">
+          <Key>
+            <PropertyRef Name="StockTakeID" />
+          </Key>
+          <Property Name="StockTakeID" Type="Int32" Nullable="false" />
+          <Property Name="StockTakeDate" Type="DateTime" Precision="3" />
+          <Property Name="StatusID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Supplier">
+          <Key>
+            <PropertyRef Name="SupplierID" />
+          </Key>
+          <Property Name="SupplierID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SupplierName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SupplierAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UpdateTime" Type="DateTime" Precision="3" />
+          <Property Name="UpdateBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ProductMasters" Relationship="Self.FK__ProductMa__Suppl__71D1E811" FromRole="Suppliers" ToRole="ProductMaster" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="TransactionHistory">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="SourceNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ProductID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Quantity" Type="Double" />
+          <Property Name="Action" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UpdateTime" Type="DateTime" Precision="3" />
+          <Property Name="UpdateBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Account" Relationship="Self.FK__Transacti__Updat__245D67DE" FromRole="TransactionHistory" ToRole="Account" />
+        </EntityType>
+        <Association Name="FK__Account__GroupID__5BE2A6F2">
+          <End Role="GroupManagement" Type="Self.GroupManagement" Multiplicity="0..1" />
+          <End Role="Account" Type="Self.Account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GroupManagement">
+              <PropertyRef Name="GroupID" />
+            </Principal>
+            <Dependent Role="Account">
+              <PropertyRef Name="GroupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__MovementH__Updat__1DB06A4F">
+          <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
+          <End Role="MovementHistory" Type="Self.MovementHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="MovementHistory">
+              <PropertyRef Name="UpdateBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__MovementH__Updat__1EA48E88">
+          <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
+          <End Role="MovementHistory" Type="Self.MovementHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="MovementHistory">
+              <PropertyRef Name="UpdateBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ProductMa__Updat__19DFD96B">
+          <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
+          <End Role="ProductMaster" Type="Self.ProductMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="ProductMaster">
+              <PropertyRef Name="UpdateBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__StockIn__UpdateB__17F790F9">
+          <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
+          <End Role="StockIn" Type="Self.StockIn" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="StockIn">
+              <PropertyRef Name="UpdateBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__StockInDe__Updat__123EB7A3">
+          <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
+          <End Role="StockInDetail" Type="Self.StockInDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="StockInDetail">
+              <PropertyRef Name="UpdateBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__StockInDe__Updat__151B244E">
+          <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
+          <End Role="StockInDetail" Type="Self.StockInDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="StockInDetail">
+              <PropertyRef Name="UpdateBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__StockOut__Update__18EBB532">
+          <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
+          <End Role="StockOut" Type="Self.StockOut" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="StockOut">
+              <PropertyRef Name="UpdateBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__StockOutD__Updat__17036CC0">
+          <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
+          <End Role="StockOutDetail" Type="Self.StockOutDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="StockOutDetail">
+              <PropertyRef Name="UpdateBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Transacti__Updat__245D67DE">
+          <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
+          <End Role="TransactionHistory" Type="Self.TransactionHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="TransactionHistory">
+              <PropertyRef Name="UpdateBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__StockOut__Custom__02FC7413">
+          <End Role="Customers" Type="Self.Customer" Multiplicity="0..1" />
+          <End Role="StockOut" Type="Self.StockOut" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customers">
+              <PropertyRef Name="CustomerID" />
+            </Principal>
+            <Dependent Role="StockOut">
+              <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__GroupFunc__Funct__6383C8BA">
+          <End Role="Functions" Type="Self.Function" Multiplicity="1" />
+          <End Role="GroupFunctions" Type="Self.GroupFunction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Functions">
+              <PropertyRef Name="FunctionID" />
+            </Principal>
+            <Dependent Role="GroupFunctions">
+              <PropertyRef Name="FunctionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__GroupFunc__Group__5CD6CB2B">
+          <End Role="GroupManagement" Type="Self.GroupManagement" Multiplicity="1" />
+          <End Role="GroupFunctions" Type="Self.GroupFunction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GroupManagement">
+              <PropertyRef Name="GroupID" />
+            </Principal>
+            <Dependent Role="GroupFunctions">
+              <PropertyRef Name="GroupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ProductMa__Suppl__71D1E811">
+          <End Role="Suppliers" Type="Self.Supplier" Multiplicity="0..1" />
+          <End Role="ProductMaster" Type="Self.ProductMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Suppliers">
+              <PropertyRef Name="SupplierID" />
+            </Principal>
+            <Dependent Role="ProductMaster">
+              <PropertyRef Name="SupplierID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__StockOutD__Produ__00200768">
+          <End Role="ProductMaster" Type="Self.ProductMaster" Multiplicity="1" />
+          <End Role="StockOutDetail" Type="Self.StockOutDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductMaster">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="StockOutDetail">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__StockInDe__Stock__1332DBDC">
+          <End Role="StockIn" Type="Self.StockIn" Multiplicity="1" />
+          <End Role="StockInDetail" Type="Self.StockInDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StockIn">
+              <PropertyRef Name="StockInID" />
+            </Principal>
+            <Dependent Role="StockInDetail">
+              <PropertyRef Name="StockInID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__StockInDe__Stock__14270015">
+          <End Role="StockIn" Type="Self.StockIn" Multiplicity="1" />
+          <End Role="StockInDetail" Type="Self.StockInDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StockIn">
+              <PropertyRef Name="StockInID" />
+            </Principal>
+            <Dependent Role="StockInDetail">
+              <PropertyRef Name="StockInID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__StockInDe__Stock__160F4887">
+          <End Role="StockIn" Type="Self.StockIn" Multiplicity="1" />
+          <End Role="StockInDetail" Type="Self.StockInDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StockIn">
+              <PropertyRef Name="StockInID" />
+            </Principal>
+            <Dependent Role="StockInDetail">
+              <PropertyRef Name="StockInID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__StockOutD__Stock__01142BA1">
+          <End Role="StockOut" Type="Self.StockOut" Multiplicity="1" />
+          <End Role="StockOutDetail" Type="Self.StockOutDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StockOut">
+              <PropertyRef Name="StockOutID" />
+            </Principal>
+            <Dependent Role="StockOutDetail">
+              <PropertyRef Name="StockOutID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TBLWareHouseSystemEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Accounts" EntityType="Self.Account" />
+          <EntitySet Name="Customers" EntityType="Self.Customer" />
+          <EntitySet Name="Functions" EntityType="Self.Function" />
+          <EntitySet Name="GroupFunctions" EntityType="Self.GroupFunction" />
+          <EntitySet Name="GroupManagements" EntityType="Self.GroupManagement" />
+          <EntitySet Name="LocationMasters" EntityType="Self.LocationMaster" />
+          <EntitySet Name="MovementHistories" EntityType="Self.MovementHistory" />
+          <EntitySet Name="ProductMasters" EntityType="Self.ProductMaster" />
+          <EntitySet Name="StockIns" EntityType="Self.StockIn" />
+          <EntitySet Name="StockInDetails" EntityType="Self.StockInDetail" />
+          <EntitySet Name="StockOuts" EntityType="Self.StockOut" />
+          <EntitySet Name="StockOutDetails" EntityType="Self.StockOutDetail" />
+          <EntitySet Name="StockTakes" EntityType="Self.StockTake" />
+          <EntitySet Name="Suppliers" EntityType="Self.Supplier" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="TransactionHistories" EntityType="Self.TransactionHistory" />
+          <AssociationSet Name="FK__Account__GroupID__5BE2A6F2" Association="Self.FK__Account__GroupID__5BE2A6F2">
+            <End Role="GroupManagement" EntitySet="GroupManagements" />
+            <End Role="Account" EntitySet="Accounts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__MovementH__Updat__1DB06A4F" Association="Self.FK__MovementH__Updat__1DB06A4F">
+            <End Role="Account" EntitySet="Accounts" />
+            <End Role="MovementHistory" EntitySet="MovementHistories" />
+          </AssociationSet>
+          <AssociationSet Name="FK__MovementH__Updat__1EA48E88" Association="Self.FK__MovementH__Updat__1EA48E88">
+            <End Role="Account" EntitySet="Accounts" />
+            <End Role="MovementHistory" EntitySet="MovementHistories" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ProductMa__Updat__19DFD96B" Association="Self.FK__ProductMa__Updat__19DFD96B">
+            <End Role="Account" EntitySet="Accounts" />
+            <End Role="ProductMaster" EntitySet="ProductMasters" />
+          </AssociationSet>
+          <AssociationSet Name="FK__StockIn__UpdateB__17F790F9" Association="Self.FK__StockIn__UpdateB__17F790F9">
+            <End Role="Account" EntitySet="Accounts" />
+            <End Role="StockIn" EntitySet="StockIns" />
+          </AssociationSet>
+          <AssociationSet Name="FK__StockInDe__Updat__123EB7A3" Association="Self.FK__StockInDe__Updat__123EB7A3">
+            <End Role="Account" EntitySet="Accounts" />
+            <End Role="StockInDetail" EntitySet="StockInDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__StockInDe__Updat__151B244E" Association="Self.FK__StockInDe__Updat__151B244E">
+            <End Role="Account" EntitySet="Accounts" />
+            <End Role="StockInDetail" EntitySet="StockInDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__StockOut__Update__18EBB532" Association="Self.FK__StockOut__Update__18EBB532">
+            <End Role="Account" EntitySet="Accounts" />
+            <End Role="StockOut" EntitySet="StockOuts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__StockOutD__Updat__17036CC0" Association="Self.FK__StockOutD__Updat__17036CC0">
+            <End Role="Account" EntitySet="Accounts" />
+            <End Role="StockOutDetail" EntitySet="StockOutDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Transacti__Updat__245D67DE" Association="Self.FK__Transacti__Updat__245D67DE">
+            <End Role="Account" EntitySet="Accounts" />
+            <End Role="TransactionHistory" EntitySet="TransactionHistories" />
+          </AssociationSet>
+          <AssociationSet Name="FK__StockOut__Custom__02FC7413" Association="Self.FK__StockOut__Custom__02FC7413">
+            <End Role="Customers" EntitySet="Customers" />
+            <End Role="StockOut" EntitySet="StockOuts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__GroupFunc__Funct__6383C8BA" Association="Self.FK__GroupFunc__Funct__6383C8BA">
+            <End Role="Functions" EntitySet="Functions" />
+            <End Role="GroupFunctions" EntitySet="GroupFunctions" />
+          </AssociationSet>
+          <AssociationSet Name="FK__GroupFunc__Group__5CD6CB2B" Association="Self.FK__GroupFunc__Group__5CD6CB2B">
+            <End Role="GroupManagement" EntitySet="GroupManagements" />
+            <End Role="GroupFunctions" EntitySet="GroupFunctions" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ProductMa__Suppl__71D1E811" Association="Self.FK__ProductMa__Suppl__71D1E811">
+            <End Role="Suppliers" EntitySet="Suppliers" />
+            <End Role="ProductMaster" EntitySet="ProductMasters" />
+          </AssociationSet>
+          <AssociationSet Name="FK__StockOutD__Produ__00200768" Association="Self.FK__StockOutD__Produ__00200768">
+            <End Role="ProductMaster" EntitySet="ProductMasters" />
+            <End Role="StockOutDetail" EntitySet="StockOutDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__StockInDe__Stock__1332DBDC" Association="Self.FK__StockInDe__Stock__1332DBDC">
+            <End Role="StockIn" EntitySet="StockIns" />
+            <End Role="StockInDetail" EntitySet="StockInDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__StockInDe__Stock__14270015" Association="Self.FK__StockInDe__Stock__14270015">
+            <End Role="StockIn" EntitySet="StockIns" />
+            <End Role="StockInDetail" EntitySet="StockInDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__StockInDe__Stock__160F4887" Association="Self.FK__StockInDe__Stock__160F4887">
+            <End Role="StockIn" EntitySet="StockIns" />
+            <End Role="StockInDetail" EntitySet="StockInDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__StockOutD__Stock__01142BA1" Association="Self.FK__StockOutD__Stock__01142BA1">
+            <End Role="StockOut" EntitySet="StockOuts" />
+            <End Role="StockOutDetail" EntitySet="StockOutDetails" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TBLWareHouseSystemModelStoreContainer" CdmEntityContainer="TBLWareHouseSystemEntities">
+          <EntitySetMapping Name="Accounts">
+            <EntityTypeMapping TypeName="TBLWareHouseSystemModel.Account">
+              <MappingFragment StoreEntitySet="Account">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="UserPassword" ColumnName="UserPassword" />
+                <ScalarProperty Name="Fullname" ColumnName="Fullname" />
+                <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+                <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+                <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+                <ScalarProperty Name="Resign" ColumnName="Resign" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Customers">
+            <EntityTypeMapping TypeName="TBLWareHouseSystemModel.Customer">
+              <MappingFragment StoreEntitySet="Customers">
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+                <ScalarProperty Name="CustomerAddress" ColumnName="CustomerAddress" />
+                <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+                <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Functions">
+            <EntityTypeMapping TypeName="TBLWareHouseSystemModel.Function">
+              <MappingFragment StoreEntitySet="Functions">
+                <ScalarProperty Name="FunctionID" ColumnName="FunctionID" />
+                <ScalarProperty Name="FunctionName" ColumnName="FunctionName" />
+                <ScalarProperty Name="Device" ColumnName="Device" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GroupFunctions">
+            <EntityTypeMapping TypeName="TBLWareHouseSystemModel.GroupFunction">
+              <MappingFragment StoreEntitySet="GroupFunctions">
+                <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+                <ScalarProperty Name="FunctionID" ColumnName="FunctionID" />
+                <ScalarProperty Name="isEnable" ColumnName="isEnable" />
+                <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+                <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GroupManagements">
+            <EntityTypeMapping TypeName="TBLWareHouseSystemModel.GroupManagement">
+              <MappingFragment StoreEntitySet="GroupManagement">
+                <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+                <ScalarProperty Name="GroupName" ColumnName="GroupName" />
+                <ScalarProperty Name="GroupDescription" ColumnName="GroupDescription" />
+                <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+                <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LocationMasters">
+            <EntityTypeMapping TypeName="TBLWareHouseSystemModel.LocationMaster">
+              <MappingFragment StoreEntitySet="LocationMaster">
+                <ScalarProperty Name="LocationID" ColumnName="LocationID" />
+                <ScalarProperty Name="LocationName" ColumnName="LocationName" />
+                <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+                <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MovementHistories">
+            <EntityTypeMapping TypeName="TBLWareHouseSystemModel.MovementHistory">
+              <MappingFragment StoreEntitySet="MovementHistory">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="ProductNo" ColumnName="ProductNo" />
+                <ScalarProperty Name="FromLocationID" ColumnName="FromLocationID" />
+                <ScalarProperty Name="ToLocationID" ColumnName="ToLocationID" />
+                <ScalarProperty Name="QuantityToMove" ColumnName="QuantityToMove" />
+                <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+                <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductMasters">
+            <EntityTypeMapping TypeName="TBLWareHouseSystemModel.ProductMaster">
+              <MappingFragment StoreEntitySet="ProductMaster">
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="ProductCode" ColumnName="ProductCode" />
+                <ScalarProperty Name="ProductQuantity" ColumnName="ProductQuantity" />
+                <ScalarProperty Name="SupplierID" ColumnName="SupplierID" />
+                <ScalarProperty Name="UOM" ColumnName="UOM" />
+                <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+                <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StockIns">
+            <EntityTypeMapping TypeName="TBLWareHouseSystemModel.StockIn">
+              <MappingFragment StoreEntitySet="StockIn">
+                <ScalarProperty Name="StockInID" ColumnName="StockInID" />
+                <ScalarProperty Name="SupplierID" ColumnName="SupplierID" />
+                <ScalarProperty Name="StockInDate" ColumnName="StockInDate" />
+                <ScalarProperty Name="StockInQuantityTotal" ColumnName="StockInQuantityTotal" />
+                <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+                <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StockInDetails">
+            <EntityTypeMapping TypeName="TBLWareHouseSystemModel.StockInDetail">
+              <MappingFragment StoreEntitySet="StockInDetail">
+                <ScalarProperty Name="StockInID" ColumnName="StockInID" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
+                <ScalarProperty Name="UnitSum" ColumnName="UnitSum" />
+                <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+                <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StockOuts">
+            <EntityTypeMapping TypeName="TBLWareHouseSystemModel.StockOut">
+              <MappingFragment StoreEntitySet="StockOut">
+                <ScalarProperty Name="StockOutID" ColumnName="StockOutID" />
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="StockOutDate" ColumnName="StockOutDate" />
+                <ScalarProperty Name="StockOutQuantityTotal" ColumnName="StockOutQuantityTotal" />
+                <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+                <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StockOutDetails">
+            <EntityTypeMapping TypeName="TBLWareHouseSystemModel.StockOutDetail">
+              <MappingFragment StoreEntitySet="StockOutDetail">
+                <ScalarProperty Name="StockOutID" ColumnName="StockOutID" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
+                <ScalarProperty Name="UnitSum" ColumnName="UnitSum" />
+                <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+                <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StockTakes">
+            <EntityTypeMapping TypeName="TBLWareHouseSystemModel.StockTake">
+              <MappingFragment StoreEntitySet="StockTake">
+                <ScalarProperty Name="StockTakeID" ColumnName="StockTakeID" />
+                <ScalarProperty Name="StockTakeDate" ColumnName="StockTakeDate" />
+                <ScalarProperty Name="StatusID" ColumnName="StatusID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Suppliers">
+            <EntityTypeMapping TypeName="TBLWareHouseSystemModel.Supplier">
+              <MappingFragment StoreEntitySet="Suppliers">
+                <ScalarProperty Name="SupplierID" ColumnName="SupplierID" />
+                <ScalarProperty Name="SupplierName" ColumnName="SupplierName" />
+                <ScalarProperty Name="SupplierAddress" ColumnName="SupplierAddress" />
+                <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+                <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="TBLWareHouseSystemModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TransactionHistories">
+            <EntityTypeMapping TypeName="TBLWareHouseSystemModel.TransactionHistory">
+              <MappingFragment StoreEntitySet="TransactionHistory">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="SourceNo" ColumnName="SourceNo" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="Action" ColumnName="Action" />
+                <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+                <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

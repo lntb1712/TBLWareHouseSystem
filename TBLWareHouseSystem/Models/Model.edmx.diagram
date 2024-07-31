@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="f955c44018c94f03a148a90bb2e91a85" Name="Diagram1" ZoomLevel="63">
+        <EntityTypeShape EntityType="TBLWareHouseSystemModel.Account" Width="1.5" PointX="3" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="TBLWareHouseSystemModel.Customer" Width="1.5" PointX="6" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TBLWareHouseSystemModel.Function" Width="1.5" PointX="3.75" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TBLWareHouseSystemModel.GroupFunction" Width="1.5" PointX="6" PointY="11.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="TBLWareHouseSystemModel.GroupManagement" Width="1.5" PointX="0.75" PointY="11.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="TBLWareHouseSystemModel.LocationMaster" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TBLWareHouseSystemModel.MovementHistory" Width="1.5" PointX="5.25" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TBLWareHouseSystemModel.ProductMaster" Width="1.5" PointX="8.25" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TBLWareHouseSystemModel.StockIn" Width="1.5" PointX="5.25" PointY="14.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TBLWareHouseSystemModel.StockInDetail" Width="1.5" PointX="7.5" PointY="15.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TBLWareHouseSystemModel.StockOut" Width="1.5" PointX="8.25" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TBLWareHouseSystemModel.StockOutDetail" Width="1.5" PointX="10.5" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TBLWareHouseSystemModel.StockTake" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TBLWareHouseSystemModel.Supplier" Width="1.5" PointX="6" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TBLWareHouseSystemModel.sysdiagram" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TBLWareHouseSystemModel.TransactionHistory" Width="1.5" PointX="5.25" PointY="22.125" IsExpanded="true" />
+        <AssociationConnector Association="TBLWareHouseSystemModel.FK__Account__GroupID__5BE2A6F2" ManuallyRouted="false" />
+        <AssociationConnector Association="TBLWareHouseSystemModel.FK__MovementH__Updat__1DB06A4F" ManuallyRouted="false" />
+        <AssociationConnector Association="TBLWareHouseSystemModel.FK__MovementH__Updat__1EA48E88" ManuallyRouted="false" />
+        <AssociationConnector Association="TBLWareHouseSystemModel.FK__ProductMa__Updat__19DFD96B" ManuallyRouted="false" />
+        <AssociationConnector Association="TBLWareHouseSystemModel.FK__StockIn__UpdateB__17F790F9" ManuallyRouted="false" />
+        <AssociationConnector Association="TBLWareHouseSystemModel.FK__StockInDe__Updat__123EB7A3" ManuallyRouted="false" />
+        <AssociationConnector Association="TBLWareHouseSystemModel.FK__StockInDe__Updat__151B244E" ManuallyRouted="false" />
+        <AssociationConnector Association="TBLWareHouseSystemModel.FK__StockOut__Update__18EBB532" ManuallyRouted="false" />
+        <AssociationConnector Association="TBLWareHouseSystemModel.FK__StockOutD__Updat__17036CC0" ManuallyRouted="false" />
+        <AssociationConnector Association="TBLWareHouseSystemModel.FK__Transacti__Updat__245D67DE" ManuallyRouted="false" />
+        <AssociationConnector Association="TBLWareHouseSystemModel.FK__StockOut__Custom__02FC7413" ManuallyRouted="false" />
+        <AssociationConnector Association="TBLWareHouseSystemModel.FK__GroupFunc__Funct__6383C8BA" ManuallyRouted="false" />
+        <AssociationConnector Association="TBLWareHouseSystemModel.FK__GroupFunc__Group__5CD6CB2B" ManuallyRouted="false" />
+        <AssociationConnector Association="TBLWareHouseSystemModel.FK__ProductMa__Suppl__71D1E811" ManuallyRouted="false" />
+        <AssociationConnector Association="TBLWareHouseSystemModel.FK__StockOutD__Produ__00200768" ManuallyRouted="false" />
+        <AssociationConnector Association="TBLWareHouseSystemModel.FK__StockInDe__Stock__1332DBDC" ManuallyRouted="false" />
+        <AssociationConnector Association="TBLWareHouseSystemModel.FK__StockInDe__Stock__14270015" ManuallyRouted="false" />
+        <AssociationConnector Association="TBLWareHouseSystemModel.FK__StockInDe__Stock__160F4887" ManuallyRouted="false" />
+        <AssociationConnector Association="TBLWareHouseSystemModel.FK__StockOutD__Stock__01142BA1" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
