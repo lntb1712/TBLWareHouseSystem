@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using TBLWareHouseSystem.GUI;
 
 namespace TBLWareHouseSystem
 {
@@ -14,6 +15,12 @@ namespace TBLWareHouseSystem
         public Login()
         {
             InitializeComponent();
+        }
+        private void Login_Click(object sender, EventArgs e)
+        {
+            Main main = new Main();
+            this.Hide();
+            main.Show();
         }
     }
 }
