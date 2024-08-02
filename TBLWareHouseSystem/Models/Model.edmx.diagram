@@ -40,6 +40,7 @@
         <AssociationConnector Association="TBLWareHouseSystemModel.FK__StockInDe__Stock__14270015" ManuallyRouted="false" />
         <AssociationConnector Association="TBLWareHouseSystemModel.FK__StockInDe__Stock__160F4887" ManuallyRouted="false" />
         <AssociationConnector Association="TBLWareHouseSystemModel.FK__StockOutD__Stock__01142BA1" ManuallyRouted="false" />
+        <AssociationConnector Association="TBLWareHouseSystemModel.FK__StockIn__Supplie__367C1819" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

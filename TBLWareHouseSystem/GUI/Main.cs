@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using TBLWareHouseSystem.GUI.UserControl;
+using static DevExpress.Xpo.Helpers.AssociatedCollectionCriteriaHelper;
 
 namespace TBLWareHouseSystem.GUI
 {
@@ -23,7 +24,13 @@ namespace TBLWareHouseSystem.GUI
         ucSupplier ucSuppliers= new ucSupplier();   
         ucStockTaking ucStockTake=new ucStockTaking();  
         ucChangePassword ucChangePass= new ucChangePassword();
-        public Main()
+
+        string UserID = string.Empty;
+        string UserPassword = string.Empty;
+        string Fullname = string.Empty;
+        string GroupID = string.Empty;
+        bool? Resign = false;
+        public Main(string UserID, string UserPassword, string Fullname, string GroupID, bool? Resign)
         {
             InitializeComponent();
             ucUser.Hide();
@@ -36,6 +43,12 @@ namespace TBLWareHouseSystem.GUI
             ucSuppliers.Hide();
             ucStockTake.Hide();
             ucChangePass.Hide();
+            
+            this.UserID = UserID;
+            this.UserPassword = UserPassword;
+            this.Fullname = Fullname;
+            this.GroupID = GroupID; 
+            this.Resign = Resign;   
         }
 
         private void btnUsers_Click(object sender, EventArgs e)
@@ -107,6 +120,11 @@ namespace TBLWareHouseSystem.GUI
             MainContainer.Controls.Clear();
             ucChangePass.Show();
             MainContainer.Controls.Add(ucChangePass);
+        }
+
+        private void Main_Load(object sender, EventArgs e)
+        {
+            txtActual.Caption= Fullname.ToString();
         }
     }
 }

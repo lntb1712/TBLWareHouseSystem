@@ -12,6 +12,8 @@ namespace TBLWareHouseSystem.Models
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class TBLWareHouseSystemEntities : DbContext
     {
@@ -41,5 +43,32 @@ namespace TBLWareHouseSystem.Models
         public virtual DbSet<Supplier> Suppliers { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<TransactionHistory> TransactionHistories { get; set; }
+    
+        public virtual ObjectResult<AccountLogin_Result> AccountLogin(string userID, string userPassword)
+        {
+            var userIDParameter = userID != null ?
+                new ObjectParameter("userID", userID) :
+                new ObjectParameter("userID", typeof(string));
+    
+            var userPasswordParameter = userPassword != null ?
+                new ObjectParameter("userPassword", userPassword) :
+                new ObjectParameter("userPassword", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<AccountLogin_Result>("AccountLogin", userIDParameter, userPasswordParameter);
+        }
+    
+        public virtual ObjectResult<GetGroupFunctionsList_Result> GetGroupFunctionsList(string groupID)
+        {
+            var groupIDParameter = groupID != null ?
+                new ObjectParameter("groupID", groupID) :
+                new ObjectParameter("groupID", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetGroupFunctionsList_Result>("GetGroupFunctionsList", groupIDParameter);
+        }
+    
+        public virtual ObjectResult<GetGroupManagementList_Result> GetGroupManagementList()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetGroupManagementList_Result>("GetGroupManagementList");
+        }
     }
 }

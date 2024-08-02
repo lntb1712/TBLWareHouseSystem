@@ -36,5 +36,6 @@ namespace TBLWareHouseSystem.Models
         public virtual ICollection<StockInDetail> StockInDetails1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<StockInDetail> StockInDetails2 { get; set; }
+        public virtual Supplier Supplier { get; set; }
     }
 }

@@ -32,14 +32,12 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
-            this.txtLogin = new DevExpress.XtraEditors.TextEdit();
-            this.txtPassword = new DevExpress.XtraEditors.TextEdit();
             this.cboHidePassword = new DevExpress.XtraEditors.CheckEdit();
             this.btnLogin = new DevExpress.XtraEditors.SimpleButton();
             this.btnSetting = new DevExpress.XtraEditors.SimpleButton();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
-            ((System.ComponentModel.ISupportInitialize)(this.txtLogin.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtPassword.Properties)).BeginInit();
+            this.txtPassword = new System.Windows.Forms.TextBox();
+            this.txtLogin = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.cboHidePassword.Properties)).BeginInit();
             this.SuspendLayout();
             // 
@@ -72,27 +70,15 @@
             this.labelControl2.TabIndex = 2;
             this.labelControl2.Text = "Password";
             // 
-            // txtLogin
-            // 
-            this.txtLogin.Location = new System.Drawing.Point(224, 181);
-            this.txtLogin.Name = "txtLogin";
-            this.txtLogin.Size = new System.Drawing.Size(244, 22);
-            this.txtLogin.TabIndex = 3;
-            // 
-            // txtPassword
-            // 
-            this.txtPassword.Location = new System.Drawing.Point(224, 233);
-            this.txtPassword.Name = "txtPassword";
-            this.txtPassword.Size = new System.Drawing.Size(244, 22);
-            this.txtPassword.TabIndex = 4;
-            // 
             // cboHidePassword
             // 
+            this.cboHidePassword.EditValue = true;
             this.cboHidePassword.Location = new System.Drawing.Point(224, 275);
             this.cboHidePassword.Name = "cboHidePassword";
             this.cboHidePassword.Properties.Caption = "Hide Password";
             this.cboHidePassword.Size = new System.Drawing.Size(124, 24);
             this.cboHidePassword.TabIndex = 5;
+            this.cboHidePassword.CheckedChanged += new System.EventHandler(this.cboHidePassword_CheckedChanged);
             // 
             // btnLogin
             // 
@@ -122,25 +108,39 @@
             this.labelControl3.TabIndex = 8;
             this.labelControl3.Text = "Login";
             // 
+            // txtPassword
+            // 
+            this.txtPassword.Location = new System.Drawing.Point(224, 233);
+            this.txtPassword.Name = "txtPassword";
+            this.txtPassword.Size = new System.Drawing.Size(244, 23);
+            this.txtPassword.TabIndex = 9;
+            this.txtPassword.TextChanged += new System.EventHandler(this.txtPassword_TextChanged);
+            // 
+            // txtLogin
+            // 
+            this.txtLogin.Location = new System.Drawing.Point(224, 176);
+            this.txtLogin.Name = "txtLogin";
+            this.txtLogin.Size = new System.Drawing.Size(244, 23);
+            this.txtLogin.TabIndex = 10;
+            // 
             // Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(544, 445);
+            this.Controls.Add(this.txtLogin);
+            this.Controls.Add(this.txtPassword);
             this.Controls.Add(this.labelControl3);
             this.Controls.Add(this.btnSetting);
             this.Controls.Add(this.btnLogin);
             this.Controls.Add(this.cboHidePassword);
-            this.Controls.Add(this.txtPassword);
-            this.Controls.Add(this.txtLogin);
             this.Controls.Add(this.labelControl2);
             this.Controls.Add(this.labelControl1);
             this.Controls.Add(this.panel1);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Login";
             this.Text = "Form1";
-            ((System.ComponentModel.ISupportInitialize)(this.txtLogin.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtPassword.Properties)).EndInit();
+            this.Load += new System.EventHandler(this.Login_Load);
             ((System.ComponentModel.ISupportInitialize)(this.cboHidePassword.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -152,12 +152,12 @@
         private System.Windows.Forms.Panel panel1;
         private DevExpress.XtraEditors.LabelControl labelControl1;
         private DevExpress.XtraEditors.LabelControl labelControl2;
-        private DevExpress.XtraEditors.TextEdit txtLogin;
-        private DevExpress.XtraEditors.TextEdit txtPassword;
         private DevExpress.XtraEditors.CheckEdit cboHidePassword;
         private DevExpress.XtraEditors.SimpleButton btnLogin;
         private DevExpress.XtraEditors.SimpleButton btnSetting;
         private DevExpress.XtraEditors.LabelControl labelControl3;
+        private System.Windows.Forms.TextBox txtPassword;
+        private System.Windows.Forms.TextBox txtLogin;
     }
 }
 

@@ -18,6 +18,7 @@ namespace TBLWareHouseSystem.Models
         public Supplier()
         {
             this.ProductMasters = new HashSet<ProductMaster>();
+            this.StockIns = new HashSet<StockIn>();
         }
     
         public string SupplierID { get; set; }
@@ -25,8 +26,11 @@ namespace TBLWareHouseSystem.Models
         public string SupplierAddress { get; set; }
         public Nullable<System.DateTime> UpdateTime { get; set; }
         public string UpdateBy { get; set; }
+        public Nullable<int> SupplierNumber { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ProductMaster> ProductMasters { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<StockIn> StockIns { get; set; }
     }
 }

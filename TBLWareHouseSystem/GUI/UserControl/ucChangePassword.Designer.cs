@@ -34,12 +34,12 @@
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
+            this.txtNewPassword = new DevExpress.XtraEditors.TextEdit();
             this.txtConfirmPassword = new DevExpress.XtraEditors.TextEdit();
             this.txtOldPassword = new DevExpress.XtraEditors.TextEdit();
-            this.textNewPassword = new DevExpress.XtraEditors.TextEdit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtNewPassword.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtConfirmPassword.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtOldPassword.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textNewPassword.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // labelControl4
@@ -102,6 +102,15 @@
             this.labelControl1.TabIndex = 88;
             this.labelControl1.Text = "Change Password";
             // 
+            // txtNewPassword
+            // 
+            this.txtNewPassword.Location = new System.Drawing.Point(690, 294);
+            this.txtNewPassword.Name = "txtNewPassword";
+            this.txtNewPassword.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
+            this.txtNewPassword.Properties.Appearance.Options.UseFont = true;
+            this.txtNewPassword.Size = new System.Drawing.Size(417, 36);
+            this.txtNewPassword.TabIndex = 97;
+            // 
             // txtConfirmPassword
             // 
             this.txtConfirmPassword.Location = new System.Drawing.Point(690, 362);
@@ -120,20 +129,11 @@
             this.txtOldPassword.Size = new System.Drawing.Size(417, 36);
             this.txtOldPassword.TabIndex = 90;
             // 
-            // textNewPassword
-            // 
-            this.textNewPassword.Location = new System.Drawing.Point(690, 294);
-            this.textNewPassword.Name = "textNewPassword";
-            this.textNewPassword.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
-            this.textNewPassword.Properties.Appearance.Options.UseFont = true;
-            this.textNewPassword.Size = new System.Drawing.Size(417, 36);
-            this.textNewPassword.TabIndex = 97;
-            // 
             // ucChangePassword
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.textNewPassword);
+            this.Controls.Add(this.txtNewPassword);
             this.Controls.Add(this.txtConfirmPassword);
             this.Controls.Add(this.labelControl4);
             this.Controls.Add(this.btnClear);
@@ -144,9 +144,9 @@
             this.Controls.Add(this.labelControl1);
             this.Name = "ucChangePassword";
             this.Size = new System.Drawing.Size(1424, 862);
+            ((System.ComponentModel.ISupportInitialize)(this.txtNewPassword.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtConfirmPassword.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtOldPassword.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textNewPassword.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -161,6 +161,6 @@
         private DevExpress.XtraEditors.TextEdit txtOldPassword;
         private DevExpress.XtraEditors.LabelControl labelControl2;
         private DevExpress.XtraEditors.LabelControl labelControl1;
-        private DevExpress.XtraEditors.TextEdit textNewPassword;
+        private DevExpress.XtraEditors.TextEdit txtNewPassword;
     }
 }

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="TBLWareHouseSystemModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="TBLWareHouseSystemModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Account">
           <Key>
             <PropertyRef Name="UserID" />
@@ -56,14 +56,6 @@
           <Property Name="UpdateTime" Type="datetime" />
           <Property Name="UpdateBy" Type="nvarchar" MaxLength="50" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6013: The table/view 'TBLWareHouseSystem.dbo.Inventory' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-        <EntityType Name="Inventory">
-          <Property Name="ProductID" Type="nvarchar" MaxLength="50" />
-          <Property Name="ProductNo" Type="nvarchar" MaxLength="1" />
-          <Property Name="Quantity" Type="float" />
-          <Property Name="LocationID" Type="nvarchar" MaxLength="50" />
-        </EntityType>-->
         <EntityType Name="LocationMaster">
           <Key>
             <PropertyRef Name="LocationID" />
@@ -94,7 +86,6 @@ warning 6013: The table/view 'TBLWareHouseSystem.dbo.Inventory' does not have a 
           <Property Name="ProductName" Type="nvarchar" MaxLength="200" />
           <Property Name="ProductCode" Type="nvarchar" MaxLength="50" />
           <Property Name="ProductQuantity" Type="float" />
-          <Property Name="SupplierID" Type="nvarchar" MaxLength="50" />
           <Property Name="UOM" Type="nvarchar" MaxLength="50" />
           <Property Name="UpdateTime" Type="datetime" />
           <Property Name="UpdateBy" Type="nvarchar" MaxLength="50" />
@@ -155,15 +146,6 @@ warning 6013: The table/view 'TBLWareHouseSystem.dbo.Inventory' does not have a 
           <Property Name="StockTakeDate" Type="datetime" />
           <Property Name="StatusID" Type="int" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6013: The table/view 'TBLWareHouseSystem.dbo.StockTakeDetail' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-        <EntityType Name="StockTakeDetail">
-          <Property Name="StockTakeID" Type="int" />
-          <Property Name="ProductID" Type="nvarchar" MaxLength="50" />
-          <Property Name="ProductNo" Type="int" />
-          <Property Name="LocationID" Type="nvarchar" MaxLength="50" />
-          <Property Name="Quantity" Type="float" />
-        </EntityType>-->
         <EntityType Name="Suppliers">
           <Key>
             <PropertyRef Name="SupplierID" />
@@ -173,6 +155,7 @@ warning 6013: The table/view 'TBLWareHouseSystem.dbo.StockTakeDetail' does not h
           <Property Name="SupplierAddress" Type="nvarchar" MaxLength="50" />
           <Property Name="UpdateTime" Type="datetime" />
           <Property Name="UpdateBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="SupplierNumber" Type="int" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -232,12 +215,6 @@ warning 6013: The table/view 'TBLWareHouseSystem.dbo.StockTakeDetail' does not h
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <!--Errors Found During Generation:
-error 6004: The table 'TBLWareHouseSystem.dbo.Inventory' is referenced by a relationship, but cannot be found.
-        <Association Name="FK__Inventory__Locat__07C12930" />-->
-        <!--Errors Found During Generation:
-error 6004: The table 'TBLWareHouseSystem.dbo.Inventory' is referenced by a relationship, but cannot be found.
-        <Association Name="FK__Inventory__Produ__08B54D69" />-->
         <Association Name="FK__MovementH__Updat__1DB06A4F">
           <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
           <End Role="MovementHistory" Type="Self.MovementHistory" Multiplicity="*" />
@@ -262,18 +239,6 @@ error 6004: The table 'TBLWareHouseSystem.dbo.Inventory' is referenced by a rela
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ProductMa__Suppl__71D1E811">
-          <End Role="Suppliers" Type="Self.Suppliers" Multiplicity="0..1" />
-          <End Role="ProductMaster" Type="Self.ProductMaster" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Suppliers">
-              <PropertyRef Name="SupplierID" />
-            </Principal>
-            <Dependent Role="ProductMaster">
-              <PropertyRef Name="SupplierID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__ProductMa__Updat__19DFD96B">
           <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
           <End Role="ProductMaster" Type="Self.ProductMaster" Multiplicity="*" />
@@ -283,6 +248,18 @@ error 6004: The table 'TBLWareHouseSystem.dbo.Inventory' is referenced by a rela
             </Principal>
             <Dependent Role="ProductMaster">
               <PropertyRef Name="UpdateBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__StockIn__Supplie__367C1819">
+          <End Role="Suppliers" Type="Self.Suppliers" Multiplicity="0..1" />
+          <End Role="StockIn" Type="Self.StockIn" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Suppliers">
+              <PropertyRef Name="SupplierID" />
+            </Principal>
+            <Dependent Role="StockIn">
+              <PropertyRef Name="SupplierID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -418,15 +395,6 @@ error 6004: The table 'TBLWareHouseSystem.dbo.Inventory' is referenced by a rela
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <!--Errors Found During Generation:
-error 6004: The table 'TBLWareHouseSystem.dbo.StockTakeDetail' is referenced by a relationship, but cannot be found.
-        <Association Name="FK__StockTake__Stock__0F624AF8" />-->
-        <!--Errors Found During Generation:
-error 6004: The table 'TBLWareHouseSystem.dbo.StockTakeDetail' is referenced by a relationship, but cannot be found.
-        <Association Name="FK__StockTake__Stock__10566F31" />-->
-        <!--Errors Found During Generation:
-error 6004: The table 'TBLWareHouseSystem.dbo.StockTakeDetail' is referenced by a relationship, but cannot be found.
-        <Association Name="FK__StockTake__Stock__114A936A" />-->
         <Association Name="FK__Transacti__Updat__245D67DE">
           <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
           <End Role="TransactionHistory" Type="Self.TransactionHistory" Multiplicity="*" />
@@ -439,6 +407,14 @@ error 6004: The table 'TBLWareHouseSystem.dbo.StockTakeDetail' is referenced by 
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="AccountLogin" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="userID" Type="nvarchar" Mode="In" />
+          <Parameter Name="userPassword" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="GetGroupFunctionsList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="groupID" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="GetGroupManagementList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="TBLWareHouseSystemModelStoreContainer">
           <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Customers" EntityType="Self.Customers" Schema="dbo" store:Type="Tables" />
@@ -476,13 +452,13 @@ error 6004: The table 'TBLWareHouseSystem.dbo.StockTakeDetail' is referenced by 
             <End Role="Account" EntitySet="Account" />
             <End Role="MovementHistory" EntitySet="MovementHistory" />
           </AssociationSet>
-          <AssociationSet Name="FK__ProductMa__Suppl__71D1E811" Association="Self.FK__ProductMa__Suppl__71D1E811">
-            <End Role="Suppliers" EntitySet="Suppliers" />
-            <End Role="ProductMaster" EntitySet="ProductMaster" />
-          </AssociationSet>
           <AssociationSet Name="FK__ProductMa__Updat__19DFD96B" Association="Self.FK__ProductMa__Updat__19DFD96B">
             <End Role="Account" EntitySet="Account" />
             <End Role="ProductMaster" EntitySet="ProductMaster" />
+          </AssociationSet>
+          <AssociationSet Name="FK__StockIn__Supplie__367C1819" Association="Self.FK__StockIn__Supplie__367C1819">
+            <End Role="Suppliers" EntitySet="Suppliers" />
+            <End Role="StockIn" EntitySet="StockIn" />
           </AssociationSet>
           <AssociationSet Name="FK__StockIn__UpdateB__17F790F9" Association="Self.FK__StockIn__UpdateB__17F790F9">
             <End Role="Account" EntitySet="Account" />
@@ -533,8 +509,7 @@ error 6004: The table 'TBLWareHouseSystem.dbo.StockTakeDetail' is referenced by 
             <End Role="TransactionHistory" EntitySet="TransactionHistory" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="TBLWareHouseSystemModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -659,6 +634,7 @@ error 6004: The table 'TBLWareHouseSystem.dbo.StockTakeDetail' is referenced by 
           <NavigationProperty Name="StockInDetails" Relationship="Self.FK__StockInDe__Stock__1332DBDC" FromRole="StockIn" ToRole="StockInDetail" />
           <NavigationProperty Name="StockInDetails1" Relationship="Self.FK__StockInDe__Stock__14270015" FromRole="StockIn" ToRole="StockInDetail" />
           <NavigationProperty Name="StockInDetails2" Relationship="Self.FK__StockInDe__Stock__160F4887" FromRole="StockIn" ToRole="StockInDetail" />
+          <NavigationProperty Name="Supplier" Relationship="TBLWareHouseSystemModel.FK__StockIn__Supplie__367C1819" FromRole="StockIn" ToRole="Supplier" />
         </EntityType>
         <EntityType Name="StockInDetail">
           <Key>
@@ -726,6 +702,8 @@ error 6004: The table 'TBLWareHouseSystem.dbo.StockTakeDetail' is referenced by 
           <Property Name="UpdateTime" Type="DateTime" Precision="3" />
           <Property Name="UpdateBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="ProductMasters" Relationship="Self.FK__ProductMa__Suppl__71D1E811" FromRole="Suppliers" ToRole="ProductMaster" />
+          <Property Name="SupplierNumber" Type="Int32" />
+          <NavigationProperty Name="StockIns" Relationship="TBLWareHouseSystemModel.FK__StockIn__Supplie__367C1819" FromRole="Supplier" ToRole="StockIn" />
         </EntityType>
         <EntityType Name="sysdiagram">
           <Key>
@@ -1071,7 +1049,53 @@ error 6004: The table 'TBLWareHouseSystem.dbo.StockTakeDetail' is referenced by 
             <End Role="StockOut" EntitySet="StockOuts" />
             <End Role="StockOutDetail" EntitySet="StockOutDetails" />
           </AssociationSet>
+          <AssociationSet Name="FK__StockIn__Supplie__367C1819" Association="TBLWareHouseSystemModel.FK__StockIn__Supplie__367C1819">
+            <End Role="Supplier" EntitySet="Suppliers" />
+            <End Role="StockIn" EntitySet="StockIns" />
+          </AssociationSet>
+          <FunctionImport Name="AccountLogin" ReturnType="Collection(TBLWareHouseSystemModel.AccountLogin_Result)">
+            <Parameter Name="userID" Mode="In" Type="String" />
+            <Parameter Name="userPassword" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetGroupFunctionsList" ReturnType="Collection(TBLWareHouseSystemModel.GetGroupFunctionsList_Result)">
+            <Parameter Name="groupID" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetGroupManagementList" ReturnType="Collection(TBLWareHouseSystemModel.GetGroupManagementList_Result)" />
         </EntityContainer>
+        <Association Name="FK__StockIn__Supplie__367C1819">
+          <End Type="TBLWareHouseSystemModel.Supplier" Role="Supplier" Multiplicity="0..1" />
+          <End Type="TBLWareHouseSystemModel.StockIn" Role="StockIn" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Supplier">
+              <PropertyRef Name="SupplierID" />
+            </Principal>
+            <Dependent Role="StockIn">
+              <PropertyRef Name="SupplierID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="AccountLogin_Result">
+          <Property Type="String" Name="UserID" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="UserPassword" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Fullname" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="GroupID" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="UpdateTime" Nullable="true" Precision="23" />
+          <Property Type="String" Name="UpdateBy" Nullable="true" MaxLength="50" />
+          <Property Type="Boolean" Name="Resign" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="GetGroupFunctionsList_Result">
+          <Property Type="String" Name="FunctionID" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="FunctionName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Device" Nullable="true" MaxLength="3" />
+          <Property Type="Boolean" Name="IsEnable" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="GetGroupManagementList_Result">
+          <Property Type="String" Name="GroupID" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="GroupName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="GroupDescription" Nullable="true" />
+          <Property Type="DateTime" Name="UpdateTime" Nullable="true" Precision="23" />
+          <Property Type="String" Name="UpdateBy" Nullable="true" MaxLength="50" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1164,7 +1188,6 @@ error 6004: The table 'TBLWareHouseSystem.dbo.StockTakeDetail' is referenced by 
                 <ScalarProperty Name="ProductName" ColumnName="ProductName" />
                 <ScalarProperty Name="ProductCode" ColumnName="ProductCode" />
                 <ScalarProperty Name="ProductQuantity" ColumnName="ProductQuantity" />
-                <ScalarProperty Name="SupplierID" ColumnName="SupplierID" />
                 <ScalarProperty Name="UOM" ColumnName="UOM" />
                 <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
                 <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
@@ -1233,6 +1256,7 @@ error 6004: The table 'TBLWareHouseSystem.dbo.StockTakeDetail' is referenced by 
           <EntitySetMapping Name="Suppliers">
             <EntityTypeMapping TypeName="TBLWareHouseSystemModel.Supplier">
               <MappingFragment StoreEntitySet="Suppliers">
+                <ScalarProperty Name="SupplierNumber" ColumnName="SupplierNumber" />
                 <ScalarProperty Name="SupplierID" ColumnName="SupplierID" />
                 <ScalarProperty Name="SupplierName" ColumnName="SupplierName" />
                 <ScalarProperty Name="SupplierAddress" ColumnName="SupplierAddress" />
@@ -1265,6 +1289,40 @@ error 6004: The table 'TBLWareHouseSystem.dbo.StockTakeDetail' is referenced by 
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="AccountLogin" FunctionName="TBLWareHouseSystemModel.Store.AccountLogin">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TBLWareHouseSystemModel.AccountLogin_Result">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="UserPassword" ColumnName="UserPassword" />
+                <ScalarProperty Name="Fullname" ColumnName="Fullname" />
+                <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+                <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+                <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+                <ScalarProperty Name="Resign" ColumnName="Resign" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetGroupFunctionsList" FunctionName="TBLWareHouseSystemModel.Store.GetGroupFunctionsList">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TBLWareHouseSystemModel.GetGroupFunctionsList_Result">
+                <ScalarProperty Name="FunctionID" ColumnName="FunctionID" />
+                <ScalarProperty Name="FunctionName" ColumnName="FunctionName" />
+                <ScalarProperty Name="Device" ColumnName="Device" />
+                <ScalarProperty Name="IsEnable" ColumnName="IsEnable" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetGroupManagementList" FunctionName="TBLWareHouseSystemModel.Store.GetGroupManagementList">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TBLWareHouseSystemModel.GetGroupManagementList_Result">
+                <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+                <ScalarProperty Name="GroupName" ColumnName="GroupName" />
+                <ScalarProperty Name="GroupDescription" ColumnName="GroupDescription" />
+                <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+                <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

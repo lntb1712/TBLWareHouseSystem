@@ -32,23 +32,23 @@
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
-            this.textNewPassword = new DevExpress.XtraEditors.TextEdit();
-            this.txtConfirmPassword = new DevExpress.XtraEditors.TextEdit();
-            this.txtOldPassword = new DevExpress.XtraEditors.TextEdit();
+            this.txtIPAddress = new DevExpress.XtraEditors.TextEdit();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
-            this.textEdit1 = new DevExpress.XtraEditors.TextEdit();
-            this.textEdit2 = new DevExpress.XtraEditors.TextEdit();
             this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnSave = new DevExpress.XtraEditors.SimpleButton();
             this.btnTestConnection = new DevExpress.XtraEditors.SimpleButton();
             this.btnBack = new DevExpress.XtraEditors.SimpleButton();
-            ((System.ComponentModel.ISupportInitialize)(this.textNewPassword.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtConfirmPassword.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtOldPassword.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit2.Properties)).BeginInit();
+            this.txtPort = new DevExpress.XtraEditors.TextEdit();
+            this.txtDatabaseName = new DevExpress.XtraEditors.TextEdit();
+            this.txtUser = new DevExpress.XtraEditors.TextEdit();
+            this.txtPassword = new DevExpress.XtraEditors.TextEdit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtIPAddress.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtPort.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtDatabaseName.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtUser.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtPassword.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // labelControl4
@@ -81,32 +81,14 @@
             this.labelControl2.TabIndex = 98;
             this.labelControl2.Text = "IP Address";
             // 
-            // textNewPassword
+            // txtIPAddress
             // 
-            this.textNewPassword.Location = new System.Drawing.Point(270, 239);
-            this.textNewPassword.Name = "textNewPassword";
-            this.textNewPassword.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
-            this.textNewPassword.Properties.Appearance.Options.UseFont = true;
-            this.textNewPassword.Size = new System.Drawing.Size(417, 36);
-            this.textNewPassword.TabIndex = 103;
-            // 
-            // txtConfirmPassword
-            // 
-            this.txtConfirmPassword.Location = new System.Drawing.Point(270, 307);
-            this.txtConfirmPassword.Name = "txtConfirmPassword";
-            this.txtConfirmPassword.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
-            this.txtConfirmPassword.Properties.Appearance.Options.UseFont = true;
-            this.txtConfirmPassword.Size = new System.Drawing.Size(417, 36);
-            this.txtConfirmPassword.TabIndex = 102;
-            // 
-            // txtOldPassword
-            // 
-            this.txtOldPassword.Location = new System.Drawing.Point(270, 171);
-            this.txtOldPassword.Name = "txtOldPassword";
-            this.txtOldPassword.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
-            this.txtOldPassword.Properties.Appearance.Options.UseFont = true;
-            this.txtOldPassword.Size = new System.Drawing.Size(417, 36);
-            this.txtOldPassword.TabIndex = 99;
+            this.txtIPAddress.Location = new System.Drawing.Point(270, 171);
+            this.txtIPAddress.Name = "txtIPAddress";
+            this.txtIPAddress.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
+            this.txtIPAddress.Properties.Appearance.Options.UseFont = true;
+            this.txtIPAddress.Size = new System.Drawing.Size(417, 36);
+            this.txtIPAddress.TabIndex = 99;
             // 
             // labelControl1
             // 
@@ -117,24 +99,6 @@
             this.labelControl1.Size = new System.Drawing.Size(116, 40);
             this.labelControl1.TabIndex = 104;
             this.labelControl1.Text = "Settings";
-            // 
-            // textEdit1
-            // 
-            this.textEdit1.Location = new System.Drawing.Point(270, 372);
-            this.textEdit1.Name = "textEdit1";
-            this.textEdit1.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
-            this.textEdit1.Properties.Appearance.Options.UseFont = true;
-            this.textEdit1.Size = new System.Drawing.Size(417, 36);
-            this.textEdit1.TabIndex = 108;
-            // 
-            // textEdit2
-            // 
-            this.textEdit2.Location = new System.Drawing.Point(270, 440);
-            this.textEdit2.Name = "textEdit2";
-            this.textEdit2.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
-            this.textEdit2.Properties.Appearance.Options.UseFont = true;
-            this.textEdit2.Size = new System.Drawing.Size(417, 36);
-            this.textEdit2.TabIndex = 107;
             // 
             // labelControl5
             // 
@@ -174,6 +138,7 @@
             this.btnSave.Size = new System.Drawing.Size(151, 48);
             this.btnSave.TabIndex = 110;
             this.btnSave.Text = "Save";
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // btnTestConnection
             // 
@@ -184,6 +149,7 @@
             this.btnTestConnection.Size = new System.Drawing.Size(207, 48);
             this.btnTestConnection.TabIndex = 111;
             this.btnTestConnection.Text = "Test Connection";
+            this.btnTestConnection.Click += new System.EventHandler(this.btnTestConnection_Click);
             // 
             // btnBack
             // 
@@ -195,54 +161,89 @@
             this.btnBack.TabIndex = 112;
             this.btnBack.Text = "Back";
             // 
+            // txtPort
+            // 
+            this.txtPort.Location = new System.Drawing.Point(269, 239);
+            this.txtPort.Name = "txtPort";
+            this.txtPort.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
+            this.txtPort.Properties.Appearance.Options.UseFont = true;
+            this.txtPort.Size = new System.Drawing.Size(418, 36);
+            this.txtPort.TabIndex = 113;
+            // 
+            // txtDatabaseName
+            // 
+            this.txtDatabaseName.Location = new System.Drawing.Point(270, 305);
+            this.txtDatabaseName.Name = "txtDatabaseName";
+            this.txtDatabaseName.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
+            this.txtDatabaseName.Properties.Appearance.Options.UseFont = true;
+            this.txtDatabaseName.Size = new System.Drawing.Size(418, 36);
+            this.txtDatabaseName.TabIndex = 114;
+            // 
+            // txtUser
+            // 
+            this.txtUser.Location = new System.Drawing.Point(269, 369);
+            this.txtUser.Name = "txtUser";
+            this.txtUser.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
+            this.txtUser.Properties.Appearance.Options.UseFont = true;
+            this.txtUser.Size = new System.Drawing.Size(418, 36);
+            this.txtUser.TabIndex = 115;
+            // 
+            // txtPassword
+            // 
+            this.txtPassword.Location = new System.Drawing.Point(269, 438);
+            this.txtPassword.Name = "txtPassword";
+            this.txtPassword.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
+            this.txtPassword.Properties.Appearance.Options.UseFont = true;
+            this.txtPassword.Size = new System.Drawing.Size(418, 36);
+            this.txtPassword.TabIndex = 116;
+            // 
             // Settings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(725, 566);
+            this.Controls.Add(this.txtPassword);
+            this.Controls.Add(this.txtUser);
+            this.Controls.Add(this.txtDatabaseName);
+            this.Controls.Add(this.txtPort);
             this.Controls.Add(this.btnBack);
             this.Controls.Add(this.btnTestConnection);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.textEdit1);
-            this.Controls.Add(this.textEdit2);
             this.Controls.Add(this.labelControl5);
             this.Controls.Add(this.labelControl6);
             this.Controls.Add(this.labelControl1);
-            this.Controls.Add(this.textNewPassword);
-            this.Controls.Add(this.txtConfirmPassword);
             this.Controls.Add(this.labelControl4);
             this.Controls.Add(this.labelControl3);
-            this.Controls.Add(this.txtOldPassword);
+            this.Controls.Add(this.txtIPAddress);
             this.Controls.Add(this.labelControl2);
             this.Name = "Settings";
             this.Text = "Settings";
-            ((System.ComponentModel.ISupportInitialize)(this.textNewPassword.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtConfirmPassword.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtOldPassword.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit2.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtIPAddress.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtPort.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtDatabaseName.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtUser.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtPassword.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private DevExpress.XtraEditors.TextEdit textNewPassword;
-        private DevExpress.XtraEditors.TextEdit txtConfirmPassword;
         private DevExpress.XtraEditors.LabelControl labelControl4;
         private DevExpress.XtraEditors.LabelControl labelControl3;
-        private DevExpress.XtraEditors.TextEdit txtOldPassword;
+        private DevExpress.XtraEditors.TextEdit txtIPAddress;
         private DevExpress.XtraEditors.LabelControl labelControl2;
         private DevExpress.XtraEditors.LabelControl labelControl1;
-        private DevExpress.XtraEditors.TextEdit textEdit1;
-        private DevExpress.XtraEditors.TextEdit textEdit2;
         private DevExpress.XtraEditors.LabelControl labelControl5;
         private DevExpress.XtraEditors.LabelControl labelControl6;
         private System.Windows.Forms.Panel panel1;
         private DevExpress.XtraEditors.SimpleButton btnSave;
         private DevExpress.XtraEditors.SimpleButton btnTestConnection;
         private DevExpress.XtraEditors.SimpleButton btnBack;
+        private DevExpress.XtraEditors.TextEdit txtPort;
+        private DevExpress.XtraEditors.TextEdit txtDatabaseName;
+        private DevExpress.XtraEditors.TextEdit txtUser;
+        private DevExpress.XtraEditors.TextEdit txtPassword;
     }
 }
