@@ -22,5 +22,12 @@ namespace TBLWareHouseSystem
             this.Hide();
             main.Show();
         }
+
+        private void btnSetting_Click(object sender, EventArgs e)
+        {
+            Settings settings= new Settings();
+            this.Hide();
+            settings.Show();
+        }
     }
 }

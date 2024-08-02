@@ -31,24 +31,19 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.accordionControl1 = new DevExpress.XtraBars.Navigation.AccordionControl();
-            this.accordionControlSeparator5 = new DevExpress.XtraBars.Navigation.AccordionControlSeparator();
             this.btnSystem = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.btnUsers = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.btnUserGroups = new DevExpress.XtraBars.Navigation.AccordionControlElement();
-            this.accordionControlSeparator6 = new DevExpress.XtraBars.Navigation.AccordionControlSeparator();
-            this.accordionControlSeparator7 = new DevExpress.XtraBars.Navigation.AccordionControlSeparator();
             this.btnOperations = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.btnStockIn = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.btnStockOut = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.btnMovements = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.btnInventory = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.btnLogistic = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.btnCustomer = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.btnSupplier = new DevExpress.XtraBars.Navigation.AccordionControlElement();
-            this.accordionControlSeparator8 = new DevExpress.XtraBars.Navigation.AccordionControlSeparator();
             this.btnStockTaking = new DevExpress.XtraBars.Navigation.AccordionControlElement();
-            this.accordionControlSeparator10 = new DevExpress.XtraBars.Navigation.AccordionControlSeparator();
             this.btnChangePass = new DevExpress.XtraBars.Navigation.AccordionControlElement();
-            this.accordionControlSeparator9 = new DevExpress.XtraBars.Navigation.AccordionControlSeparator();
             this.fluentDesignFormControl1 = new DevExpress.XtraBars.FluentDesignSystem.FluentDesignFormControl();
             this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
             this.barListItem1 = new DevExpress.XtraBars.BarListItem();
@@ -76,7 +71,6 @@
             this.btnSystemManagement = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.btnUserManagement = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.btnUserGroupsManagement = new DevExpress.XtraBars.Navigation.AccordionControlElement();
-            this.accordionControlSeparator11 = new DevExpress.XtraBars.Navigation.AccordionControlSeparator();
             ((System.ComponentModel.ISupportInitialize)(this.accordionControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fluentDesignFormControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemHyperLinkEdit1)).BeginInit();
@@ -88,28 +82,17 @@
             // 
             this.accordionControl1.Dock = System.Windows.Forms.DockStyle.Left;
             this.accordionControl1.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] {
-            this.accordionControlSeparator5,
             this.btnSystem,
-            this.accordionControlSeparator6,
-            this.accordionControlSeparator7,
             this.btnOperations,
-            this.accordionControlSeparator11,
             this.btnLogistic,
-            this.accordionControlSeparator8,
             this.btnStockTaking,
-            this.accordionControlSeparator10,
-            this.btnChangePass,
-            this.accordionControlSeparator9});
+            this.btnChangePass});
             this.accordionControl1.Location = new System.Drawing.Point(0, 39);
             this.accordionControl1.Name = "accordionControl1";
             this.accordionControl1.ScrollBarMode = DevExpress.XtraBars.Navigation.ScrollBarMode.Touch;
             this.accordionControl1.Size = new System.Drawing.Size(380, 708);
             this.accordionControl1.TabIndex = 1;
             this.accordionControl1.ViewType = DevExpress.XtraBars.Navigation.AccordionControlViewType.HamburgerMenu;
-            // 
-            // accordionControlSeparator5
-            // 
-            this.accordionControlSeparator5.Name = "accordionControlSeparator5";
             // 
             // btnSystem
             // 
@@ -139,20 +122,13 @@
             this.btnUserGroups.Text = "User Groups Management";
             this.btnUserGroups.Click += new System.EventHandler(this.btnUserGroups_Click);
             // 
-            // accordionControlSeparator6
-            // 
-            this.accordionControlSeparator6.Name = "accordionControlSeparator6";
-            // 
-            // accordionControlSeparator7
-            // 
-            this.accordionControlSeparator7.Name = "accordionControlSeparator7";
-            // 
             // btnOperations
             // 
             this.btnOperations.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] {
             this.btnStockIn,
             this.btnStockOut,
-            this.btnMovements});
+            this.btnMovements,
+            this.btnInventory});
             this.btnOperations.Expanded = true;
             this.btnOperations.ImageOptions.Image = global::TBLWareHouseSystem.Properties.Resources.project_32x32;
             this.btnOperations.Name = "btnOperations";
@@ -165,6 +141,7 @@
             this.btnStockIn.Name = "btnStockIn";
             this.btnStockIn.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
             this.btnStockIn.Text = "Stock In Management";
+            this.btnStockIn.Click += new System.EventHandler(this.btnStockIn_Click);
             // 
             // btnStockOut
             // 
@@ -173,6 +150,7 @@
             this.btnStockOut.Name = "btnStockOut";
             this.btnStockOut.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
             this.btnStockOut.Text = "Stock Out Management";
+            this.btnStockOut.Click += new System.EventHandler(this.btnStockOut_Click);
             // 
             // btnMovements
             // 
@@ -181,6 +159,16 @@
             this.btnMovements.Name = "btnMovements";
             this.btnMovements.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
             this.btnMovements.Text = "Movement";
+            this.btnMovements.Click += new System.EventHandler(this.btnMovements_Click);
+            // 
+            // btnInventory
+            // 
+            this.btnInventory.ImageOptions.Image = global::TBLWareHouseSystem.Properties.Resources.home_32x32;
+            this.btnInventory.ImageOptions.ImageLayoutMode = DevExpress.XtraBars.Navigation.ImageLayoutMode.Stretch;
+            this.btnInventory.Name = "btnInventory";
+            this.btnInventory.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.btnInventory.Text = "Inventory";
+            this.btnInventory.Click += new System.EventHandler(this.btnInventory_Click);
             // 
             // btnLogistic
             // 
@@ -199,6 +187,7 @@
             this.btnCustomer.Name = "btnCustomer";
             this.btnCustomer.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
             this.btnCustomer.Text = "Customers Management";
+            this.btnCustomer.Click += new System.EventHandler(this.btnCustomer_Click);
             // 
             // btnSupplier
             // 
@@ -207,10 +196,7 @@
             this.btnSupplier.Name = "btnSupplier";
             this.btnSupplier.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
             this.btnSupplier.Text = "Suppliers Management";
-            // 
-            // accordionControlSeparator8
-            // 
-            this.accordionControlSeparator8.Name = "accordionControlSeparator8";
+            this.btnSupplier.Click += new System.EventHandler(this.btnSupplier_Click);
             // 
             // btnStockTaking
             // 
@@ -219,10 +205,7 @@
             this.btnStockTaking.Name = "btnStockTaking";
             this.btnStockTaking.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
             this.btnStockTaking.Text = "Stock Taking";
-            // 
-            // accordionControlSeparator10
-            // 
-            this.accordionControlSeparator10.Name = "accordionControlSeparator10";
+            this.btnStockTaking.Click += new System.EventHandler(this.btnStockTaking_Click);
             // 
             // btnChangePass
             // 
@@ -231,10 +214,7 @@
             this.btnChangePass.Name = "btnChangePass";
             this.btnChangePass.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
             this.btnChangePass.Text = "Change Password";
-            // 
-            // accordionControlSeparator9
-            // 
-            this.accordionControlSeparator9.Name = "accordionControlSeparator9";
+            this.btnChangePass.Click += new System.EventHandler(this.btnChangePass_Click);
             // 
             // fluentDesignFormControl1
             // 
@@ -415,10 +395,6 @@
             this.btnUserGroupsManagement.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
             this.btnUserGroupsManagement.Text = "User Groups Management";
             // 
-            // accordionControlSeparator11
-            // 
-            this.accordionControlSeparator11.Name = "accordionControlSeparator11";
-            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
@@ -453,7 +429,6 @@
         private DevExpress.XtraBars.BarStaticItem txtActualUser;
         private DevExpress.XtraBars.BarEditItem barEditItem2;
         private DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit repositoryItemPictureEdit1;
-        private DevExpress.XtraBars.Navigation.AccordionControlSeparator accordionControlSeparator5;
         private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement1;
         private DevExpress.XtraBars.Navigation.AccordionControlElement btnChangePassword;
         private DevExpress.XtraBars.Navigation.AccordionControlElement btnStockTake;
@@ -481,13 +456,8 @@
         private DevExpress.XtraBars.Navigation.AccordionControlElement btnMovements;
         private DevExpress.XtraBars.Navigation.AccordionControlElement btnCustomer;
         private DevExpress.XtraBars.Navigation.AccordionControlElement btnSupplier;
-        private DevExpress.XtraBars.Navigation.AccordionControlSeparator accordionControlSeparator6;
-        private DevExpress.XtraBars.Navigation.AccordionControlSeparator accordionControlSeparator7;
-        private DevExpress.XtraBars.Navigation.AccordionControlSeparator accordionControlSeparator8;
         private DevExpress.XtraBars.Navigation.AccordionControlElement btnChangePass;
         private DevExpress.XtraBars.Navigation.AccordionControlElement btnStockTaking;
-        private DevExpress.XtraBars.Navigation.AccordionControlSeparator accordionControlSeparator9;
-        private DevExpress.XtraBars.Navigation.AccordionControlSeparator accordionControlSeparator10;
-        private DevExpress.XtraBars.Navigation.AccordionControlSeparator accordionControlSeparator11;
+        private DevExpress.XtraBars.Navigation.AccordionControlElement btnInventory;
     }
 }

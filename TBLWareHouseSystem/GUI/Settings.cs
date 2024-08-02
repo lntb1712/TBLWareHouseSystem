@@ -9,18 +9,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace TBLWareHouseSystem.GUI.UserControl
+namespace TBLWareHouseSystem.GUI
 {
-    public partial class ucStockInManagement : DevExpress.XtraEditors.XtraUserControl
+    public partial class Settings : DevExpress.XtraEditors.XtraForm
     {
-        public ucStockInManagement()
+        public Settings()
         {
             InitializeComponent();
-        }
-
-        private void gridUser_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

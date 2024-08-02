@@ -15,11 +15,27 @@ namespace TBLWareHouseSystem.GUI
     {
         ucUserGroups ucUserGroup=new ucUserGroups();
         ucUsers ucUser=new ucUsers();
+        ucStockInManagement ucStockIn= new ucStockInManagement();
+        ucStockOutManagement ucStockOut= new ucStockOutManagement();    
+        ucMovement ucMove=new ucMovement(); 
+        ucInventory ucInven= new ucInventory(); 
+        ucCustomers ucCustomer= new ucCustomers();
+        ucSupplier ucSuppliers= new ucSupplier();   
+        ucStockTaking ucStockTake=new ucStockTaking();  
+        ucChangePassword ucChangePass= new ucChangePassword();
         public Main()
         {
             InitializeComponent();
             ucUser.Hide();
             ucUserGroup.Hide();
+            ucStockIn.Hide();
+            ucStockOut.Hide();
+            ucMove.Hide();
+            ucInven.Hide();
+            ucCustomer.Hide();
+            ucSuppliers.Hide();
+            ucStockTake.Hide();
+            ucChangePass.Hide();
         }
 
         private void btnUsers_Click(object sender, EventArgs e)
@@ -35,6 +51,62 @@ namespace TBLWareHouseSystem.GUI
             MainContainer.Controls.Clear();
             ucUserGroup.Show();
             MainContainer.Controls.Add(ucUserGroup);    
+        }
+
+        private void btnStockIn_Click(object sender, EventArgs e)
+        {
+            MainContainer.Controls.Clear();
+            ucStockIn.Show();
+            MainContainer.Controls.Add(ucStockIn); 
+        }
+
+        private void btnStockOut_Click(object sender, EventArgs e)
+        {
+            MainContainer.Controls.Clear();
+            ucStockOut.Show();
+            MainContainer.Controls.Add(ucStockOut);
+        }
+
+        private void btnMovements_Click(object sender, EventArgs e)
+        {
+            MainContainer.Controls.Clear();
+            ucMove.Show();
+            MainContainer.Controls.Add(ucMove); 
+        }
+
+        private void btnInventory_Click(object sender, EventArgs e)
+        {
+            MainContainer.Controls.Clear();
+            ucInven.Show();
+            MainContainer.Controls.Add(ucInven);
+        }
+
+        private void btnCustomer_Click(object sender, EventArgs e)
+        {
+            MainContainer.Controls.Clear();
+            ucCustomer.Show();
+            MainContainer.Controls.Add(ucCustomer); 
+        }
+
+        private void btnSupplier_Click(object sender, EventArgs e)
+        {
+            MainContainer.Controls.Clear();
+            ucSuppliers.Show();
+            MainContainer.Controls.Add(ucSuppliers);
+        }
+
+        private void btnStockTaking_Click(object sender, EventArgs e)
+        {
+            MainContainer.Controls.Clear();
+            ucStockTake.Show();
+            MainContainer.Controls.Add(ucStockTake);
+        }
+
+        private void btnChangePass_Click(object sender, EventArgs e)
+        {
+            MainContainer.Controls.Clear();
+            ucChangePass.Show();
+            MainContainer.Controls.Add(ucChangePass);
         }
     }
 }

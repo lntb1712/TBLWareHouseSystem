@@ -11,16 +11,11 @@ using System.Windows.Forms;
 
 namespace TBLWareHouseSystem.GUI.UserControl
 {
-    public partial class ucStockInManagement : DevExpress.XtraEditors.XtraUserControl
+    public partial class ucChangePassword : DevExpress.XtraEditors.XtraUserControl
     {
-        public ucStockInManagement()
+        public ucChangePassword()
         {
             InitializeComponent();
-        }
-
-        private void gridUser_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

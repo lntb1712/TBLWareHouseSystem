@@ -47,7 +47,7 @@
             // 
             this.panel1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel1.BackgroundImage")));
             this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.panel1.Location = new System.Drawing.Point(208, -4);
+            this.panel1.Location = new System.Drawing.Point(208, 1);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(120, 100);
             this.panel1.TabIndex = 0;
@@ -110,13 +110,13 @@
             this.btnSetting.Size = new System.Drawing.Size(94, 29);
             this.btnSetting.TabIndex = 7;
             this.btnSetting.Text = "Setting";
-            this.btnSetting.Click += new System.EventHandler(this.Login_Click);
+            this.btnSetting.Click += new System.EventHandler(this.btnSetting_Click);
             // 
             // labelControl3
             // 
             this.labelControl3.Appearance.Font = new System.Drawing.Font("Tahoma", 20F);
             this.labelControl3.Appearance.Options.UseFont = true;
-            this.labelControl3.Location = new System.Drawing.Point(224, 102);
+            this.labelControl3.Location = new System.Drawing.Point(224, 106);
             this.labelControl3.Name = "labelControl3";
             this.labelControl3.Size = new System.Drawing.Size(78, 40);
             this.labelControl3.TabIndex = 8;

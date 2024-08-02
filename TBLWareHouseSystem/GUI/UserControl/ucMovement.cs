@@ -11,16 +11,11 @@ using System.Windows.Forms;
 
 namespace TBLWareHouseSystem.GUI.UserControl
 {
-    public partial class ucStockInManagement : DevExpress.XtraEditors.XtraUserControl
+    public partial class ucMovement : DevExpress.XtraEditors.XtraUserControl
     {
-        public ucStockInManagement()
+        public ucMovement()
         {
             InitializeComponent();
-        }
-
-        private void gridUser_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }
