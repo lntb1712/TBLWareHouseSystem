@@ -215,6 +215,7 @@
             this.Controls.Add(this.labelControl1);
             this.Name = "ucUsers";
             this.Size = new System.Drawing.Size(1424, 862);
+            this.Load += new System.EventHandler(this.ucUsers_Load);
             ((System.ComponentModel.ISupportInitialize)(this.txtUserName.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPassword.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkResign.Properties)).EndInit();

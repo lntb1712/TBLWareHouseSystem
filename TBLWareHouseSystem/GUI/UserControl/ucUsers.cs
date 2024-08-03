@@ -17,5 +17,15 @@ namespace TBLWareHouseSystem.GUI.UserControl
         {
             InitializeComponent();
         }
+
+        private void ucUsers_Load(object sender, EventArgs e)
+        {
+            LoadData();
+        }
+        private void LoadData()
+        {
+            //var query = 
+            //from GM in 
+        }
     }
 }
