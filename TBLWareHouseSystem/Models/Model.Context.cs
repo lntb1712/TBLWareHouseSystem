@@ -70,5 +70,10 @@ namespace TBLWareHouseSystem.Models
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetGroupManagementList_Result>("GetGroupManagementList");
         }
+    
+        public virtual ObjectResult<GetAccountList_Result> GetAccountList()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetAccountList_Result>("GetAccountList");
+        }
     }
 }

@@ -171,6 +171,9 @@
     <Compile Include="Models\Function.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\GetAccountList_Result.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\GetGroupFunctionsList_Result.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
