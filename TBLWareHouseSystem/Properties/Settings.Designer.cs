@@ -34,5 +34,16 @@ namespace TBLWareHouseSystem.Properties {
                 this["MyConnection"] = value;
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=192.168.1.9,1712;Initial Catalog=TBLWareHouseSystem;Persist Security " +
+            "Info=True;User ID=thanhbinh;Password=123;TrustServerCertificate=True")]
+        public string TBLWareHouseSystemConnectionString {
+            get {
+                return ((string)(this["TBLWareHouseSystemConnectionString"]));
+            }
+        }
     }
 }

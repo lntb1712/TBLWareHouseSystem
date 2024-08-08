@@ -75,5 +75,103 @@ namespace TBLWareHouseSystem.Models
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetAccountList_Result>("GetAccountList");
         }
+    
+        public virtual int UpdateGroupFunctionList(Nullable<bool> isEnable, string functionID, string groupID)
+        {
+            var isEnableParameter = isEnable.HasValue ?
+                new ObjectParameter("IsEnable", isEnable) :
+                new ObjectParameter("IsEnable", typeof(bool));
+    
+            var functionIDParameter = functionID != null ?
+                new ObjectParameter("FunctionID", functionID) :
+                new ObjectParameter("FunctionID", typeof(string));
+    
+            var groupIDParameter = groupID != null ?
+                new ObjectParameter("GroupID", groupID) :
+                new ObjectParameter("GroupID", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UpdateGroupFunctionList", isEnableParameter, functionIDParameter, groupIDParameter);
+        }
+    
+        public virtual int InsertAndUpdateGroupFunctionsList(string groupID, string functionID, Nullable<bool> isEnable, string updateBy)
+        {
+            var groupIDParameter = groupID != null ?
+                new ObjectParameter("groupID", groupID) :
+                new ObjectParameter("groupID", typeof(string));
+    
+            var functionIDParameter = functionID != null ?
+                new ObjectParameter("functionID", functionID) :
+                new ObjectParameter("functionID", typeof(string));
+    
+            var isEnableParameter = isEnable.HasValue ?
+                new ObjectParameter("isEnable", isEnable) :
+                new ObjectParameter("isEnable", typeof(bool));
+    
+            var updateByParameter = updateBy != null ?
+                new ObjectParameter("updateBy", updateBy) :
+                new ObjectParameter("updateBy", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("InsertAndUpdateGroupFunctionsList", groupIDParameter, functionIDParameter, isEnableParameter, updateByParameter);
+        }
+    
+        public virtual int InsertGroupManagement(string groupID, string groupName, string groupDescription, string updateBy)
+        {
+            var groupIDParameter = groupID != null ?
+                new ObjectParameter("groupID", groupID) :
+                new ObjectParameter("groupID", typeof(string));
+    
+            var groupNameParameter = groupName != null ?
+                new ObjectParameter("groupName", groupName) :
+                new ObjectParameter("groupName", typeof(string));
+    
+            var groupDescriptionParameter = groupDescription != null ?
+                new ObjectParameter("groupDescription", groupDescription) :
+                new ObjectParameter("groupDescription", typeof(string));
+    
+            var updateByParameter = updateBy != null ?
+                new ObjectParameter("updateBy", updateBy) :
+                new ObjectParameter("updateBy", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("InsertGroupManagement", groupIDParameter, groupNameParameter, groupDescriptionParameter, updateByParameter);
+        }
+    
+        public virtual int DeleteGroupManagement(string groupID)
+        {
+            var groupIDParameter = groupID != null ?
+                new ObjectParameter("groupID", groupID) :
+                new ObjectParameter("groupID", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("DeleteGroupManagement", groupIDParameter);
+        }
+    
+        public virtual int DeleteGroupFunctionList(string groupID)
+        {
+            var groupIDParameter = groupID != null ?
+                new ObjectParameter("groupID", groupID) :
+                new ObjectParameter("groupID", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("DeleteGroupFunctionList", groupIDParameter);
+        }
+    
+        public virtual int UpdateGroupManagement(string groupID, string groupName, string groupDescription, string updateBy)
+        {
+            var groupIDParameter = groupID != null ?
+                new ObjectParameter("groupID", groupID) :
+                new ObjectParameter("groupID", typeof(string));
+    
+            var groupNameParameter = groupName != null ?
+                new ObjectParameter("groupName", groupName) :
+                new ObjectParameter("groupName", typeof(string));
+    
+            var groupDescriptionParameter = groupDescription != null ?
+                new ObjectParameter("groupDescription", groupDescription) :
+                new ObjectParameter("groupDescription", typeof(string));
+    
+            var updateByParameter = updateBy != null ?
+                new ObjectParameter("updateBy", updateBy) :
+                new ObjectParameter("updateBy", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UpdateGroupManagement", groupIDParameter, groupNameParameter, groupDescriptionParameter, updateByParameter);
+        }
     }
 }

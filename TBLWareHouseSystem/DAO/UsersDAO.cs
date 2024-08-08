@@ -9,10 +9,12 @@ namespace TBLWareHouseSystem.DAO
 {
     internal class UsersDAO
     {
-        //public List<Account> getAllAccountList()
-        //{
-        //    TBLWareHouseSystemEntities entities = new TBLWareHouseSystemEntities();
-        //    List<Account>list= en
-        //}
+        public List<Account> getAllAccountList()
+        {
+            TBLWareHouseSystemEntities entities = new TBLWareHouseSystemEntities();
+            List<Account> list = entities.Accounts.ToList();
+            return list;
+        }
+
     }
 }

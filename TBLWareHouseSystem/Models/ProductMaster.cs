@@ -24,13 +24,11 @@ namespace TBLWareHouseSystem.Models
         public string ProductName { get; set; }
         public string ProductCode { get; set; }
         public Nullable<double> ProductQuantity { get; set; }
-        public string SupplierID { get; set; }
         public string UOM { get; set; }
         public Nullable<System.DateTime> UpdateTime { get; set; }
         public string UpdateBy { get; set; }
     
         public virtual Account Account { get; set; }
-        public virtual Supplier Supplier { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<StockOutDetail> StockOutDetails { get; set; }
     }

@@ -191,6 +191,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__Account__GroupID__5D95E53A">
+          <End Role="GroupManagement" Type="Self.GroupManagement" Multiplicity="0..1" />
+          <End Role="Account" Type="Self.Account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GroupManagement">
+              <PropertyRef Name="GroupID" />
+            </Principal>
+            <Dependent Role="Account">
+              <PropertyRef Name="GroupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__GroupFunc__Funct__5E8A0973">
+          <End Role="Functions" Type="Self.Functions" Multiplicity="1" />
+          <End Role="GroupFunctions" Type="Self.GroupFunctions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Functions">
+              <PropertyRef Name="FunctionID" />
+            </Principal>
+            <Dependent Role="GroupFunctions">
+              <PropertyRef Name="FunctionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__GroupFunc__Funct__6383C8BA">
           <End Role="Functions" Type="Self.Functions" Multiplicity="1" />
           <End Role="GroupFunctions" Type="Self.GroupFunctions" Multiplicity="*" />
@@ -204,6 +228,18 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__GroupFunc__Group__5CD6CB2B">
+          <End Role="GroupManagement" Type="Self.GroupManagement" Multiplicity="1" />
+          <End Role="GroupFunctions" Type="Self.GroupFunctions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GroupManagement">
+              <PropertyRef Name="GroupID" />
+            </Principal>
+            <Dependent Role="GroupFunctions">
+              <PropertyRef Name="GroupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__GroupFunc__Group__5F7E2DAC">
           <End Role="GroupManagement" Type="Self.GroupManagement" Multiplicity="1" />
           <End Role="GroupFunctions" Type="Self.GroupFunctions" Multiplicity="*" />
           <ReferentialConstraint>
@@ -239,7 +275,43 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__MovementH__Updat__625A9A57">
+          <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
+          <End Role="MovementHistory" Type="Self.MovementHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="MovementHistory">
+              <PropertyRef Name="UpdateBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__MovementH__Updat__634EBE90">
+          <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
+          <End Role="MovementHistory" Type="Self.MovementHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="MovementHistory">
+              <PropertyRef Name="UpdateBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__ProductMa__Updat__19DFD96B">
+          <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
+          <End Role="ProductMaster" Type="Self.ProductMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="ProductMaster">
+              <PropertyRef Name="UpdateBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ProductMa__Updat__6442E2C9">
           <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
           <End Role="ProductMaster" Type="Self.ProductMaster" Multiplicity="*" />
           <ReferentialConstraint>
@@ -263,7 +335,31 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__StockIn__Supplie__73852659">
+          <End Role="Suppliers" Type="Self.Suppliers" Multiplicity="0..1" />
+          <End Role="StockIn" Type="Self.StockIn" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Suppliers">
+              <PropertyRef Name="SupplierID" />
+            </Principal>
+            <Dependent Role="StockIn">
+              <PropertyRef Name="SupplierID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__StockIn__UpdateB__17F790F9">
+          <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
+          <End Role="StockIn" Type="Self.StockIn" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="StockIn">
+              <PropertyRef Name="UpdateBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__StockIn__UpdateB__65370702">
           <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
           <End Role="StockIn" Type="Self.StockIn" Multiplicity="*" />
           <ReferentialConstraint>
@@ -311,6 +407,42 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__StockInDe__Stock__662B2B3B">
+          <End Role="StockIn" Type="Self.StockIn" Multiplicity="1" />
+          <End Role="StockInDetail" Type="Self.StockInDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StockIn">
+              <PropertyRef Name="StockInID" />
+            </Principal>
+            <Dependent Role="StockInDetail">
+              <PropertyRef Name="StockInID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__StockInDe__Stock__671F4F74">
+          <End Role="StockIn" Type="Self.StockIn" Multiplicity="1" />
+          <End Role="StockInDetail" Type="Self.StockInDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StockIn">
+              <PropertyRef Name="StockInID" />
+            </Principal>
+            <Dependent Role="StockInDetail">
+              <PropertyRef Name="StockInID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__StockInDe__Stock__681373AD">
+          <End Role="StockIn" Type="Self.StockIn" Multiplicity="1" />
+          <End Role="StockInDetail" Type="Self.StockInDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StockIn">
+              <PropertyRef Name="StockInID" />
+            </Principal>
+            <Dependent Role="StockInDetail">
+              <PropertyRef Name="StockInID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__StockInDe__Updat__123EB7A3">
           <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
           <End Role="StockInDetail" Type="Self.StockInDetail" Multiplicity="*" />
@@ -335,7 +467,43 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__StockInDe__Updat__690797E6">
+          <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
+          <End Role="StockInDetail" Type="Self.StockInDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="StockInDetail">
+              <PropertyRef Name="UpdateBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__StockInDe__Updat__69FBBC1F">
+          <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
+          <End Role="StockInDetail" Type="Self.StockInDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="StockInDetail">
+              <PropertyRef Name="UpdateBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__StockOut__Custom__02FC7413">
+          <End Role="Customers" Type="Self.Customers" Multiplicity="0..1" />
+          <End Role="StockOut" Type="Self.StockOut" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customers">
+              <PropertyRef Name="CustomerID" />
+            </Principal>
+            <Dependent Role="StockOut">
+              <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__StockOut__Custom__6AEFE058">
           <End Role="Customers" Type="Self.Customers" Multiplicity="0..1" />
           <End Role="StockOut" Type="Self.StockOut" Multiplicity="*" />
           <ReferentialConstraint>
@@ -359,7 +527,31 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__StockOut__Update__6BE40491">
+          <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
+          <End Role="StockOut" Type="Self.StockOut" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="StockOut">
+              <PropertyRef Name="UpdateBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__StockOutD__Produ__00200768">
+          <End Role="ProductMaster" Type="Self.ProductMaster" Multiplicity="1" />
+          <End Role="StockOutDetail" Type="Self.StockOutDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductMaster">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="StockOutDetail">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__StockOutD__Produ__6CD828CA">
           <End Role="ProductMaster" Type="Self.ProductMaster" Multiplicity="1" />
           <End Role="StockOutDetail" Type="Self.StockOutDetail" Multiplicity="*" />
           <ReferentialConstraint>
@@ -383,7 +575,31 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__StockOutD__Stock__6DCC4D03">
+          <End Role="StockOut" Type="Self.StockOut" Multiplicity="1" />
+          <End Role="StockOutDetail" Type="Self.StockOutDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StockOut">
+              <PropertyRef Name="StockOutID" />
+            </Principal>
+            <Dependent Role="StockOutDetail">
+              <PropertyRef Name="StockOutID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__StockOutD__Updat__17036CC0">
+          <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
+          <End Role="StockOutDetail" Type="Self.StockOutDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="StockOutDetail">
+              <PropertyRef Name="UpdateBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__StockOutD__Updat__6EC0713C">
           <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
           <End Role="StockOutDetail" Type="Self.StockOutDetail" Multiplicity="*" />
           <ReferentialConstraint>
@@ -407,15 +623,56 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__Transacti__Updat__72910220">
+          <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
+          <End Role="TransactionHistory" Type="Self.TransactionHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="TransactionHistory">
+              <PropertyRef Name="UpdateBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Function Name="AccountLogin" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="userID" Type="nvarchar" Mode="In" />
           <Parameter Name="userPassword" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="DeleteGroupFunctionList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="groupID" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="DeleteGroupManagement" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="groupID" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="GetAccountList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="GetGroupFunctionsList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="groupID" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="GetGroupManagementList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="InsertAndUpdateGroupFunctionsList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="groupID" Type="nvarchar" Mode="In" />
+          <Parameter Name="functionID" Type="nvarchar" Mode="In" />
+          <Parameter Name="isEnable" Type="bit" Mode="In" />
+          <Parameter Name="updateBy" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="InsertGroupManagement" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="groupID" Type="nvarchar" Mode="In" />
+          <Parameter Name="groupName" Type="nvarchar" Mode="In" />
+          <Parameter Name="groupDescription" Type="nvarchar" Mode="In" />
+          <Parameter Name="updateBy" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="UpdateGroupFunctionList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IsEnable" Type="bit" Mode="In" />
+          <Parameter Name="FunctionID" Type="nvarchar" Mode="In" />
+          <Parameter Name="GroupID" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="UpdateGroupManagement" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="groupID" Type="nvarchar" Mode="In" />
+          <Parameter Name="groupName" Type="nvarchar" Mode="In" />
+          <Parameter Name="groupDescription" Type="nvarchar" Mode="In" />
+          <Parameter Name="updateBy" Type="nvarchar" Mode="In" />
+        </Function>
         <EntityContainer Name="TBLWareHouseSystemModelStoreContainer">
           <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Customers" EntityType="Self.Customers" Schema="dbo" store:Type="Tables" />
@@ -437,11 +694,23 @@
             <End Role="GroupManagement" EntitySet="GroupManagement" />
             <End Role="Account" EntitySet="Account" />
           </AssociationSet>
+          <AssociationSet Name="FK__Account__GroupID__5D95E53A" Association="Self.FK__Account__GroupID__5D95E53A">
+            <End Role="GroupManagement" EntitySet="GroupManagement" />
+            <End Role="Account" EntitySet="Account" />
+          </AssociationSet>
+          <AssociationSet Name="FK__GroupFunc__Funct__5E8A0973" Association="Self.FK__GroupFunc__Funct__5E8A0973">
+            <End Role="Functions" EntitySet="Functions" />
+            <End Role="GroupFunctions" EntitySet="GroupFunctions" />
+          </AssociationSet>
           <AssociationSet Name="FK__GroupFunc__Funct__6383C8BA" Association="Self.FK__GroupFunc__Funct__6383C8BA">
             <End Role="Functions" EntitySet="Functions" />
             <End Role="GroupFunctions" EntitySet="GroupFunctions" />
           </AssociationSet>
           <AssociationSet Name="FK__GroupFunc__Group__5CD6CB2B" Association="Self.FK__GroupFunc__Group__5CD6CB2B">
+            <End Role="GroupManagement" EntitySet="GroupManagement" />
+            <End Role="GroupFunctions" EntitySet="GroupFunctions" />
+          </AssociationSet>
+          <AssociationSet Name="FK__GroupFunc__Group__5F7E2DAC" Association="Self.FK__GroupFunc__Group__5F7E2DAC">
             <End Role="GroupManagement" EntitySet="GroupManagement" />
             <End Role="GroupFunctions" EntitySet="GroupFunctions" />
           </AssociationSet>
@@ -453,7 +722,19 @@
             <End Role="Account" EntitySet="Account" />
             <End Role="MovementHistory" EntitySet="MovementHistory" />
           </AssociationSet>
+          <AssociationSet Name="FK__MovementH__Updat__625A9A57" Association="Self.FK__MovementH__Updat__625A9A57">
+            <End Role="Account" EntitySet="Account" />
+            <End Role="MovementHistory" EntitySet="MovementHistory" />
+          </AssociationSet>
+          <AssociationSet Name="FK__MovementH__Updat__634EBE90" Association="Self.FK__MovementH__Updat__634EBE90">
+            <End Role="Account" EntitySet="Account" />
+            <End Role="MovementHistory" EntitySet="MovementHistory" />
+          </AssociationSet>
           <AssociationSet Name="FK__ProductMa__Updat__19DFD96B" Association="Self.FK__ProductMa__Updat__19DFD96B">
+            <End Role="Account" EntitySet="Account" />
+            <End Role="ProductMaster" EntitySet="ProductMaster" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ProductMa__Updat__6442E2C9" Association="Self.FK__ProductMa__Updat__6442E2C9">
             <End Role="Account" EntitySet="Account" />
             <End Role="ProductMaster" EntitySet="ProductMaster" />
           </AssociationSet>
@@ -461,7 +742,15 @@
             <End Role="Suppliers" EntitySet="Suppliers" />
             <End Role="StockIn" EntitySet="StockIn" />
           </AssociationSet>
+          <AssociationSet Name="FK__StockIn__Supplie__73852659" Association="Self.FK__StockIn__Supplie__73852659">
+            <End Role="Suppliers" EntitySet="Suppliers" />
+            <End Role="StockIn" EntitySet="StockIn" />
+          </AssociationSet>
           <AssociationSet Name="FK__StockIn__UpdateB__17F790F9" Association="Self.FK__StockIn__UpdateB__17F790F9">
+            <End Role="Account" EntitySet="Account" />
+            <End Role="StockIn" EntitySet="StockIn" />
+          </AssociationSet>
+          <AssociationSet Name="FK__StockIn__UpdateB__65370702" Association="Self.FK__StockIn__UpdateB__65370702">
             <End Role="Account" EntitySet="Account" />
             <End Role="StockIn" EntitySet="StockIn" />
           </AssociationSet>
@@ -477,6 +766,18 @@
             <End Role="StockIn" EntitySet="StockIn" />
             <End Role="StockInDetail" EntitySet="StockInDetail" />
           </AssociationSet>
+          <AssociationSet Name="FK__StockInDe__Stock__662B2B3B" Association="Self.FK__StockInDe__Stock__662B2B3B">
+            <End Role="StockIn" EntitySet="StockIn" />
+            <End Role="StockInDetail" EntitySet="StockInDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK__StockInDe__Stock__671F4F74" Association="Self.FK__StockInDe__Stock__671F4F74">
+            <End Role="StockIn" EntitySet="StockIn" />
+            <End Role="StockInDetail" EntitySet="StockInDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK__StockInDe__Stock__681373AD" Association="Self.FK__StockInDe__Stock__681373AD">
+            <End Role="StockIn" EntitySet="StockIn" />
+            <End Role="StockInDetail" EntitySet="StockInDetail" />
+          </AssociationSet>
           <AssociationSet Name="FK__StockInDe__Updat__123EB7A3" Association="Self.FK__StockInDe__Updat__123EB7A3">
             <End Role="Account" EntitySet="Account" />
             <End Role="StockInDetail" EntitySet="StockInDetail" />
@@ -485,7 +786,19 @@
             <End Role="Account" EntitySet="Account" />
             <End Role="StockInDetail" EntitySet="StockInDetail" />
           </AssociationSet>
+          <AssociationSet Name="FK__StockInDe__Updat__690797E6" Association="Self.FK__StockInDe__Updat__690797E6">
+            <End Role="Account" EntitySet="Account" />
+            <End Role="StockInDetail" EntitySet="StockInDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK__StockInDe__Updat__69FBBC1F" Association="Self.FK__StockInDe__Updat__69FBBC1F">
+            <End Role="Account" EntitySet="Account" />
+            <End Role="StockInDetail" EntitySet="StockInDetail" />
+          </AssociationSet>
           <AssociationSet Name="FK__StockOut__Custom__02FC7413" Association="Self.FK__StockOut__Custom__02FC7413">
+            <End Role="Customers" EntitySet="Customers" />
+            <End Role="StockOut" EntitySet="StockOut" />
+          </AssociationSet>
+          <AssociationSet Name="FK__StockOut__Custom__6AEFE058" Association="Self.FK__StockOut__Custom__6AEFE058">
             <End Role="Customers" EntitySet="Customers" />
             <End Role="StockOut" EntitySet="StockOut" />
           </AssociationSet>
@@ -493,7 +806,15 @@
             <End Role="Account" EntitySet="Account" />
             <End Role="StockOut" EntitySet="StockOut" />
           </AssociationSet>
+          <AssociationSet Name="FK__StockOut__Update__6BE40491" Association="Self.FK__StockOut__Update__6BE40491">
+            <End Role="Account" EntitySet="Account" />
+            <End Role="StockOut" EntitySet="StockOut" />
+          </AssociationSet>
           <AssociationSet Name="FK__StockOutD__Produ__00200768" Association="Self.FK__StockOutD__Produ__00200768">
+            <End Role="ProductMaster" EntitySet="ProductMaster" />
+            <End Role="StockOutDetail" EntitySet="StockOutDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK__StockOutD__Produ__6CD828CA" Association="Self.FK__StockOutD__Produ__6CD828CA">
             <End Role="ProductMaster" EntitySet="ProductMaster" />
             <End Role="StockOutDetail" EntitySet="StockOutDetail" />
           </AssociationSet>
@@ -501,11 +822,23 @@
             <End Role="StockOut" EntitySet="StockOut" />
             <End Role="StockOutDetail" EntitySet="StockOutDetail" />
           </AssociationSet>
+          <AssociationSet Name="FK__StockOutD__Stock__6DCC4D03" Association="Self.FK__StockOutD__Stock__6DCC4D03">
+            <End Role="StockOut" EntitySet="StockOut" />
+            <End Role="StockOutDetail" EntitySet="StockOutDetail" />
+          </AssociationSet>
           <AssociationSet Name="FK__StockOutD__Updat__17036CC0" Association="Self.FK__StockOutD__Updat__17036CC0">
             <End Role="Account" EntitySet="Account" />
             <End Role="StockOutDetail" EntitySet="StockOutDetail" />
           </AssociationSet>
+          <AssociationSet Name="FK__StockOutD__Updat__6EC0713C" Association="Self.FK__StockOutD__Updat__6EC0713C">
+            <End Role="Account" EntitySet="Account" />
+            <End Role="StockOutDetail" EntitySet="StockOutDetail" />
+          </AssociationSet>
           <AssociationSet Name="FK__Transacti__Updat__245D67DE" Association="Self.FK__Transacti__Updat__245D67DE">
+            <End Role="Account" EntitySet="Account" />
+            <End Role="TransactionHistory" EntitySet="TransactionHistory" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Transacti__Updat__72910220" Association="Self.FK__Transacti__Updat__72910220">
             <End Role="Account" EntitySet="Account" />
             <End Role="TransactionHistory" EntitySet="TransactionHistory" />
           </AssociationSet>
@@ -613,12 +946,10 @@
           <Property Name="ProductName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="ProductCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="ProductQuantity" Type="Double" />
-          <Property Name="SupplierID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="UOM" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="UpdateTime" Type="DateTime" Precision="3" />
           <Property Name="UpdateBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Account" Relationship="Self.FK__ProductMa__Updat__19DFD96B" FromRole="ProductMaster" ToRole="Account" />
-          <NavigationProperty Name="Supplier" Relationship="Self.FK__ProductMa__Suppl__71D1E811" FromRole="ProductMaster" ToRole="Suppliers" />
           <NavigationProperty Name="StockOutDetails" Relationship="Self.FK__StockOutD__Produ__00200768" FromRole="ProductMaster" ToRole="StockOutDetail" />
         </EntityType>
         <EntityType Name="StockIn">
@@ -702,7 +1033,6 @@
           <Property Name="SupplierAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="UpdateTime" Type="DateTime" Precision="3" />
           <Property Name="UpdateBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="ProductMasters" Relationship="Self.FK__ProductMa__Suppl__71D1E811" FromRole="Suppliers" ToRole="ProductMaster" />
           <Property Name="SupplierNumber" Type="Int32" />
           <NavigationProperty Name="StockIns" Relationship="TBLWareHouseSystemModel.FK__StockIn__Supplie__367C1819" FromRole="Supplier" ToRole="StockIn" />
         </EntityType>
@@ -885,18 +1215,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ProductMa__Suppl__71D1E811">
-          <End Role="Suppliers" Type="Self.Supplier" Multiplicity="0..1" />
-          <End Role="ProductMaster" Type="Self.ProductMaster" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Suppliers">
-              <PropertyRef Name="SupplierID" />
-            </Principal>
-            <Dependent Role="ProductMaster">
-              <PropertyRef Name="SupplierID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__StockOutD__Produ__00200768">
           <End Role="ProductMaster" Type="Self.ProductMaster" Multiplicity="1" />
           <End Role="StockOutDetail" Type="Self.StockOutDetail" Multiplicity="*" />
@@ -1026,10 +1344,6 @@
             <End Role="GroupManagement" EntitySet="GroupManagements" />
             <End Role="GroupFunctions" EntitySet="GroupFunctions" />
           </AssociationSet>
-          <AssociationSet Name="FK__ProductMa__Suppl__71D1E811" Association="Self.FK__ProductMa__Suppl__71D1E811">
-            <End Role="Suppliers" EntitySet="Suppliers" />
-            <End Role="ProductMaster" EntitySet="ProductMasters" />
-          </AssociationSet>
           <AssociationSet Name="FK__StockOutD__Produ__00200768" Association="Self.FK__StockOutD__Produ__00200768">
             <End Role="ProductMaster" EntitySet="ProductMasters" />
             <End Role="StockOutDetail" EntitySet="StockOutDetails" />
@@ -1063,6 +1377,35 @@
           </FunctionImport>
           <FunctionImport Name="GetGroupManagementList" ReturnType="Collection(TBLWareHouseSystemModel.GetGroupManagementList_Result)" />
           <FunctionImport Name="GetAccountList" ReturnType="Collection(TBLWareHouseSystemModel.GetAccountList_Result)" />
+          <FunctionImport Name="UpdateGroupFunctionList">
+            <Parameter Name="IsEnable" Mode="In" Type="Boolean" />
+            <Parameter Name="FunctionID" Mode="In" Type="String" />
+            <Parameter Name="GroupID" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="InsertAndUpdateGroupFunctionsList">
+            <Parameter Name="groupID" Mode="In" Type="String" />
+            <Parameter Name="functionID" Mode="In" Type="String" />
+            <Parameter Name="isEnable" Mode="In" Type="Boolean" />
+            <Parameter Name="updateBy" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="InsertGroupManagement">
+            <Parameter Name="groupID" Mode="In" Type="String" />
+            <Parameter Name="groupName" Mode="In" Type="String" />
+            <Parameter Name="groupDescription" Mode="In" Type="String" />
+            <Parameter Name="updateBy" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="DeleteGroupManagement">
+          <Parameter Name="groupID" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="DeleteGroupFunctionList">
+          <Parameter Name="groupID" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="UpdateGroupManagement">
+            <Parameter Name="groupID" Mode="In" Type="String" />
+            <Parameter Name="groupName" Mode="In" Type="String" />
+            <Parameter Name="groupDescription" Mode="In" Type="String" />
+            <Parameter Name="updateBy" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
         <Association Name="FK__StockIn__Supplie__367C1819">
           <End Type="TBLWareHouseSystemModel.Supplier" Role="Supplier" Multiplicity="0..1" />
@@ -1349,6 +1692,12 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UpdateGroupFunctionList" FunctionName="TBLWareHouseSystemModel.Store.UpdateGroupFunctionList" />
+          <FunctionImportMapping FunctionImportName="InsertAndUpdateGroupFunctionsList" FunctionName="TBLWareHouseSystemModel.Store.InsertAndUpdateGroupFunctionsList" />
+          <FunctionImportMapping FunctionImportName="InsertGroupManagement" FunctionName="TBLWareHouseSystemModel.Store.InsertGroupManagement" />
+          <FunctionImportMapping FunctionImportName="DeleteGroupManagement" FunctionName="TBLWareHouseSystemModel.Store.DeleteGroupManagement" />
+          <FunctionImportMapping FunctionImportName="DeleteGroupFunctionList" FunctionName="TBLWareHouseSystemModel.Store.DeleteGroupFunctionList" />
+          <FunctionImportMapping FunctionImportName="UpdateGroupManagement" FunctionName="TBLWareHouseSystemModel.Store.UpdateGroupManagement" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

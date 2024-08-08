@@ -114,7 +114,7 @@
             // 
             this.btnAdd.Appearance.Font = new System.Drawing.Font("Tahoma", 15F);
             this.btnAdd.Appearance.Options.UseFont = true;
-            this.btnAdd.Location = new System.Drawing.Point(33, 31);
+            this.btnAdd.Location = new System.Drawing.Point(22, 31);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(100, 48);
             this.btnAdd.TabIndex = 12;
@@ -153,7 +153,10 @@
             // gridView1
             // 
             this.gridView1.GridControl = this.gridUser;
+            this.gridView1.LevelIndent = 0;
             this.gridView1.Name = "gridView1";
+            this.gridView1.OptionsBehavior.Editable = false;
+            this.gridView1.PreviewIndent = 0;
             // 
             // cboGroupID
             // 
@@ -213,6 +216,7 @@
             this.Controls.Add(this.txtUserName);
             this.Controls.Add(this.labelControl2);
             this.Controls.Add(this.labelControl1);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "ucUsers";
             this.Size = new System.Drawing.Size(1424, 862);
             this.Load += new System.EventHandler(this.ucUsers_Load);

@@ -34,7 +34,6 @@
         <AssociationConnector Association="TBLWareHouseSystemModel.FK__StockOut__Custom__02FC7413" ManuallyRouted="false" />
         <AssociationConnector Association="TBLWareHouseSystemModel.FK__GroupFunc__Funct__6383C8BA" ManuallyRouted="false" />
         <AssociationConnector Association="TBLWareHouseSystemModel.FK__GroupFunc__Group__5CD6CB2B" ManuallyRouted="false" />
-        <AssociationConnector Association="TBLWareHouseSystemModel.FK__ProductMa__Suppl__71D1E811" ManuallyRouted="false" />
         <AssociationConnector Association="TBLWareHouseSystemModel.FK__StockOutD__Produ__00200768" ManuallyRouted="false" />
         <AssociationConnector Association="TBLWareHouseSystemModel.FK__StockInDe__Stock__1332DBDC" ManuallyRouted="false" />
         <AssociationConnector Association="TBLWareHouseSystemModel.FK__StockInDe__Stock__14270015" ManuallyRouted="false" />

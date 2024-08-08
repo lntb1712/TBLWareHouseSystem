@@ -28,8 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.gridGroup = new DevExpress.XtraGrid.GridControl();
-            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.components = new System.ComponentModel.Container();
             this.btnEdit = new DevExpress.XtraEditors.SimpleButton();
             this.btnRemove = new DevExpress.XtraEditors.SimpleButton();
             this.btnAdd = new DevExpress.XtraEditors.SimpleButton();
@@ -39,32 +38,29 @@
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
-            this.gridFunction = new DevExpress.XtraGrid.GridControl();
-            this.gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.groupFunctionsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.tBLWareHouseSystemDataSet = new TBLWareHouseSystem.TBLWareHouseSystemDataSet();
             this.txtGroupDes = new DevExpress.XtraEditors.TextEdit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridGroup)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            this.groupFunctionsTableAdapter = new TBLWareHouseSystem.TBLWareHouseSystemDataSetTableAdapters.GroupFunctionsTableAdapter();
+            this.gridFunctions = new DevExpress.XtraGrid.GridControl();
+            this.gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridGroup = new DevExpress.XtraGrid.GridControl();
+            this.gridGroupManagement = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.colGroupID = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colGroupName = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colGroupDes = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colUpdateTime = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colUpdateBy = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.txtGroupName.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtGroupID.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridFunction)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.groupFunctionsBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tBLWareHouseSystemDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtGroupDes.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridFunctions)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridGroup)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridGroupManagement)).BeginInit();
             this.SuspendLayout();
-            // 
-            // gridGroup
-            // 
-            this.gridGroup.Location = new System.Drawing.Point(25, 293);
-            this.gridGroup.MainView = this.gridView1;
-            this.gridGroup.Name = "gridGroup";
-            this.gridGroup.Size = new System.Drawing.Size(1338, 274);
-            this.gridGroup.TabIndex = 29;
-            this.gridGroup.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gridView1});
-            // 
-            // gridView1
-            // 
-            this.gridView1.GridControl = this.gridGroup;
-            this.gridView1.Name = "gridView1";
             // 
             // btnEdit
             // 
@@ -75,6 +71,7 @@
             this.btnEdit.Size = new System.Drawing.Size(114, 48);
             this.btnEdit.TabIndex = 28;
             this.btnEdit.Text = "Edit";
+            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
             // 
             // btnRemove
             // 
@@ -85,6 +82,7 @@
             this.btnRemove.Size = new System.Drawing.Size(105, 48);
             this.btnRemove.TabIndex = 27;
             this.btnRemove.Text = "Remove";
+            this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
             // 
             // btnAdd
             // 
@@ -95,6 +93,7 @@
             this.btnAdd.Size = new System.Drawing.Size(100, 48);
             this.btnAdd.TabIndex = 26;
             this.btnAdd.Text = "Add";
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // txtGroupName
             // 
@@ -154,20 +153,15 @@
             this.labelControl4.TabIndex = 30;
             this.labelControl4.Text = "Group Des";
             // 
-            // gridFunction
+            // groupFunctionsBindingSource
             // 
-            this.gridFunction.Location = new System.Drawing.Point(25, 573);
-            this.gridFunction.MainView = this.gridView2;
-            this.gridFunction.Name = "gridFunction";
-            this.gridFunction.Size = new System.Drawing.Size(1338, 274);
-            this.gridFunction.TabIndex = 34;
-            this.gridFunction.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gridView2});
+            this.groupFunctionsBindingSource.DataMember = "GroupFunctions";
+            this.groupFunctionsBindingSource.DataSource = this.tBLWareHouseSystemDataSet;
             // 
-            // gridView2
+            // tBLWareHouseSystemDataSet
             // 
-            this.gridView2.GridControl = this.gridFunction;
-            this.gridView2.Name = "gridView2";
+            this.tBLWareHouseSystemDataSet.DataSetName = "TBLWareHouseSystemDataSet";
+            this.tBLWareHouseSystemDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // txtGroupDes
             // 
@@ -178,13 +172,111 @@
             this.txtGroupDes.Size = new System.Drawing.Size(1169, 36);
             this.txtGroupDes.TabIndex = 35;
             // 
+            // groupFunctionsTableAdapter
+            // 
+            this.groupFunctionsTableAdapter.ClearBeforeFill = true;
+            // 
+            // gridFunctions
+            // 
+            this.gridFunctions.Location = new System.Drawing.Point(25, 573);
+            this.gridFunctions.MainView = this.gridView2;
+            this.gridFunctions.Name = "gridFunctions";
+            this.gridFunctions.Size = new System.Drawing.Size(1338, 274);
+            this.gridFunctions.TabIndex = 36;
+            this.gridFunctions.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridView2});
+            this.gridFunctions.Click += new System.EventHandler(this.gridFunctions_Click);
+            // 
+            // gridView2
+            // 
+            this.gridView2.GridControl = this.gridFunctions;
+            this.gridView2.Name = "gridView2";
+            this.gridView2.OptionsEditForm.EditFormColumnCount = 4;
+            // 
+            // gridGroup
+            // 
+            this.gridGroup.Location = new System.Drawing.Point(43, 294);
+            this.gridGroup.MainView = this.gridGroupManagement;
+            this.gridGroup.Name = "gridGroup";
+            this.gridGroup.Size = new System.Drawing.Size(1338, 274);
+            this.gridGroup.TabIndex = 37;
+            this.gridGroup.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridGroupManagement});
+            // 
+            // gridGroupManagement
+            // 
+            this.gridGroupManagement.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.colGroupID,
+            this.colGroupName,
+            this.colGroupDes,
+            this.colUpdateTime,
+            this.colUpdateBy});
+            this.gridGroupManagement.GridControl = this.gridGroup;
+            this.gridGroupManagement.Name = "gridGroupManagement";
+            this.gridGroupManagement.OptionsEditForm.EditFormColumnCount = 4;
+            // 
+            // colGroupID
+            // 
+            this.colGroupID.Caption = "Group ID";
+            this.colGroupID.FieldName = "colGroupID";
+            this.colGroupID.MinWidth = 25;
+            this.colGroupID.Name = "colGroupID";
+            this.colGroupID.UnboundDataType = typeof(string);
+            this.colGroupID.Visible = true;
+            this.colGroupID.VisibleIndex = 0;
+            this.colGroupID.Width = 94;
+            // 
+            // colGroupName
+            // 
+            this.colGroupName.Caption = "Group Name";
+            this.colGroupName.FieldName = "colGroupName";
+            this.colGroupName.MinWidth = 25;
+            this.colGroupName.Name = "colGroupName";
+            this.colGroupName.UnboundDataType = typeof(string);
+            this.colGroupName.Visible = true;
+            this.colGroupName.VisibleIndex = 1;
+            this.colGroupName.Width = 94;
+            // 
+            // colGroupDes
+            // 
+            this.colGroupDes.Caption = "Group Description";
+            this.colGroupDes.FieldName = "colGroupDes";
+            this.colGroupDes.MinWidth = 25;
+            this.colGroupDes.Name = "colGroupDes";
+            this.colGroupDes.UnboundDataType = typeof(string);
+            this.colGroupDes.Visible = true;
+            this.colGroupDes.VisibleIndex = 2;
+            this.colGroupDes.Width = 94;
+            // 
+            // colUpdateTime
+            // 
+            this.colUpdateTime.Caption = "Update Time";
+            this.colUpdateTime.FieldName = "colUpdateTime";
+            this.colUpdateTime.MinWidth = 25;
+            this.colUpdateTime.Name = "colUpdateTime";
+            this.colUpdateTime.UnboundDataType = typeof(System.DateTime);
+            this.colUpdateTime.Visible = true;
+            this.colUpdateTime.VisibleIndex = 3;
+            this.colUpdateTime.Width = 94;
+            // 
+            // colUpdateBy
+            // 
+            this.colUpdateBy.Caption = "Update By";
+            this.colUpdateBy.FieldName = "colUpdateBy";
+            this.colUpdateBy.MinWidth = 25;
+            this.colUpdateBy.Name = "colUpdateBy";
+            this.colUpdateBy.UnboundDataType = typeof(string);
+            this.colUpdateBy.Visible = true;
+            this.colUpdateBy.VisibleIndex = 4;
+            this.colUpdateBy.Width = 94;
+            // 
             // ucUserGroups
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.txtGroupDes);
-            this.Controls.Add(this.gridFunction);
             this.Controls.Add(this.gridGroup);
+            this.Controls.Add(this.gridFunctions);
+            this.Controls.Add(this.txtGroupDes);
             this.Controls.Add(this.btnEdit);
             this.Controls.Add(this.btnRemove);
             this.Controls.Add(this.btnAdd);
@@ -196,22 +288,22 @@
             this.Controls.Add(this.labelControl4);
             this.Name = "ucUserGroups";
             this.Size = new System.Drawing.Size(1424, 862);
-            ((System.ComponentModel.ISupportInitialize)(this.gridGroup)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+            this.Load += new System.EventHandler(this.ucUserGroups_Load);
             ((System.ComponentModel.ISupportInitialize)(this.txtGroupName.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtGroupID.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridFunction)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.groupFunctionsBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tBLWareHouseSystemDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtGroupDes.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridFunctions)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridGroup)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridGroupManagement)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private DevExpress.XtraGrid.GridControl gridGroup;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
         private DevExpress.XtraEditors.SimpleButton btnEdit;
         private DevExpress.XtraEditors.SimpleButton btnRemove;
         private DevExpress.XtraEditors.SimpleButton btnAdd;
@@ -221,8 +313,18 @@
         private DevExpress.XtraEditors.LabelControl labelControl2;
         private DevExpress.XtraEditors.LabelControl labelControl1;
         private DevExpress.XtraEditors.LabelControl labelControl4;
-        private DevExpress.XtraGrid.GridControl gridFunction;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridView2;
         private DevExpress.XtraEditors.TextEdit txtGroupDes;
+        private System.Windows.Forms.BindingSource groupFunctionsBindingSource;
+        private TBLWareHouseSystemDataSet tBLWareHouseSystemDataSet;
+        private TBLWareHouseSystemDataSetTableAdapters.GroupFunctionsTableAdapter groupFunctionsTableAdapter;
+        private DevExpress.XtraGrid.GridControl gridFunctions;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView2;
+        private DevExpress.XtraGrid.GridControl gridGroup;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridGroupManagement;
+        private DevExpress.XtraGrid.Columns.GridColumn colGroupID;
+        private DevExpress.XtraGrid.Columns.GridColumn colGroupName;
+        private DevExpress.XtraGrid.Columns.GridColumn colGroupDes;
+        private DevExpress.XtraGrid.Columns.GridColumn colUpdateTime;
+        private DevExpress.XtraGrid.Columns.GridColumn colUpdateBy;
     }
 }
